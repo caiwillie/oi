@@ -12,5 +12,5 @@ public class _${question.frontendQuestionId}_${question.title}{
         Solution solution = new _${question.frontendQuestionId}_${question.title}().new Solution();
 
     }
-${question.code}
+    ${question.code}
 }
