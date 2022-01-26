@@ -10,6 +10,11 @@ public class BST {
         BSTree left;
         BSTree right;
 
+        public BSTree(int value, BSTree left, BSTree right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
     }
 
     /*
@@ -20,9 +25,13 @@ public class BST {
     * */
 
 
-    /*
-    查找
-    * */
+    /**
+     * 查找
+     *
+     * @param t     the t
+     * @param value the value
+     * @return the bs tree
+     */
     BSTree search(BSTree t, int value) {
         BSTree p = t;
         while(p != null) {
@@ -43,6 +52,41 @@ public class BST {
         return p;
     }
 
+    /**
+     * 插入
+     *
+     * @param t     the t
+     * @param value the value
+     */
+    void insert(BSTree t, int value) {
+        BSTree f = null, p = t, s = null;
+        while(p != null) {
+            if(p.value == value) {
+                break;
+            }
+            // f 为 p 的父节点
+            f = p;
+            if (p.value > value) {
+                // 当前节点比目标值大，在左子树中找
+                p = p.left;
+            } else {
+                // 当前节点比目标值小，在右子树中找
+                p = p.right;
+            }
+        }
+
+        if(p != null) return;
+
+        s = new BSTree(value, null, null);
+
+        if(f == null) {
+            t = s;
+        } else if (p == f.left) {
+            f.left = s;
+        } else {
+            f.right = s;
+        }
+    }
 
     /**
      * 删除
@@ -52,8 +96,7 @@ public class BST {
      * O(n) = logn, 主要就是查找的时间以及找前驱和后继的时间
      */
     void delete(BSTree t, int value) {
-        BSTree p = t;
-        BSTree f = null, q = null, s = null;
+        BSTree f = null, p = t, q = null, s = null;
         while(p != null) {
             if(p.value == value) {
                 break;
