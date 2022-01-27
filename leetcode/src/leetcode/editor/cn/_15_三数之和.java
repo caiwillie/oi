@@ -41,7 +41,6 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class _15_三数之和 {
     public static void main(String[] args) {
@@ -62,7 +61,8 @@ public class _15_三数之和 {
                 int sum = 0;
                 int left = i + 1, right = nums.length - 1;
                 for (; left < right; left++) {
-                    for(;left < right && (sum = nums[i] + nums[left] + nums[right]) > 0; right--) {}
+                    for (; left < right && (sum = nums[i] + nums[left] + nums[right]) > 0; right--) {
+                    }
                     if (sum == 0) {
                         if (left > i + 1 && nums[left] == nums[left - 1]) continue;
                         else ans.add(Arrays.asList(nums[i], nums[left], nums[right]));

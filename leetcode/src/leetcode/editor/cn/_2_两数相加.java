@@ -67,7 +67,7 @@ public class _2_两数相加 {
             // 这是逆序的
             ListNode lx = l1, ly = l2;
             int x = 0, y = 0, carry = 0, sum = 0;
-            while(lx != null || ly != null) {
+            while (lx != null || ly != null) {
                 x = lx == null ? 0 : lx.val;
                 lx = lx == null ? null : lx.next;
                 y = ly == null ? 0 : ly.val;
@@ -80,7 +80,7 @@ public class _2_两数相加 {
                 cur = cur.next;
             }
 
-            if(carry == 1) {
+            if (carry == 1) {
                 cur.next = new ListNode(carry);
             }
             return dummy.next;

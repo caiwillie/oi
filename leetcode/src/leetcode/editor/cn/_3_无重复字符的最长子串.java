@@ -52,7 +52,6 @@ abcabcbb
 
 * */
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class _3_无重复字符的最长子串 {
@@ -71,10 +70,11 @@ public class _3_无重复字符的最长子串 {
             char[] chars = s.toCharArray();
             for (; right < chars.length; right++) {
                 char c = chars[right];
-                while (left < right && set.contains(c)) {
+                for (; left < right && set.contains(c); left++) {
                     // 如果发现当前字符已经存在，从left开始逐个往前删除
-                    set.remove(chars[left++]);
+                    set.remove(chars[left]);
                 }
+
                 set.add(c);
                 max = Math.max(max, right - left + 1);
             }

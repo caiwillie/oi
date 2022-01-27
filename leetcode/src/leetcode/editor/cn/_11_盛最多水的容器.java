@@ -60,7 +60,7 @@ public class _11_盛最多水的容器 {
             int ans = 0;
             int left = 0, right = height.length - 1;
             for (; left < right; left++) {
-                for (;left < right && height[right] < height[left]; right--) {
+                for (; left < right && height[right] < height[left]; right--) {
                     ans = Math.max(ans, (right - left) * height[right]);
                 }
                 ans = Math.max(ans, (right - left) * height[left]);
