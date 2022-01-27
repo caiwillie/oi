@@ -2,10 +2,13 @@ package _9_排序._1_插入排序;
 
 public class _1_直接插入排序 {
 
+    static int length = 0;
+    static int[] r = null;
+
     static void straightInsertSort(int[] $r, int n) {
         // 处理数据
-        int length = $r.length;
-        int[] r = new int[length + 1];
+        length = $r.length;
+        r = new int[length + 1];
         System.arraycopy($r, 0, r, 1, length);
 
         for (int i = 2; i <= length ; i++) {
