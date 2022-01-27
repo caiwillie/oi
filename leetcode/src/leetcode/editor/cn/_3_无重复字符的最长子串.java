@@ -61,7 +61,7 @@ public class _3_无重复字符的最长子串 {
 
     }
 
-//leetcode submit region begin(Prohibit modification and deletion)
+    //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lengthOfLongestSubstring(String s) {
             if (s.length() == 0) return 0;
@@ -81,6 +81,6 @@ public class _3_无重复字符的最长子串 {
             return max;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
