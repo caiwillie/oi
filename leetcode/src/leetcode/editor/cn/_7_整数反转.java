@@ -59,8 +59,10 @@ public class _7_整数反转 {
             while (x != 0) {
                 mod = x % 10;
                 if (sum > Integer.MAX_VALUE / 10 || (sum == Integer.MAX_VALUE / 10 && mod > 7))
+                    // 判断上边界是否会溢出
                     return 0;
                 if (sum < Integer.MIN_VALUE / 10 || (sum == Integer.MIN_VALUE / 10 && mod < -8))
+                    // 判断下边界是否会溢出
                     return 0;
                 sum = sum * 10 + mod;
                 x = x / 10;
