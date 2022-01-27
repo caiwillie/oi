@@ -60,12 +60,17 @@ public class _15_三数之和 {
                 if (i > 0 && nums[i] == nums[i - 1]) continue; // 如果首个固定的数和前面的数相同，就说明已经计算过了
                 int sum = 0;
                 int left = i + 1, right = nums.length - 1;
-                for (; left < right; left++) {
-                    for (; left < right && (sum = nums[i] + nums[left] + nums[right]) > 0; right--) {
-                    }
-                    if (sum == 0) {
-                        if (left > i + 1 && nums[left] == nums[left - 1]) continue;
-                        else ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                while (left < right) {
+                    sum = nums[i] + nums[left] + nums[right];
+                    if(sum > 0) {
+                        right--;
+                    } else {
+                        if (sum == 0) {
+                            if (!(left > i + 1 && nums[left] == nums[left - 1])) {
+                                ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                            }
+                        }
+                        left++;
                     }
                 }
             }
