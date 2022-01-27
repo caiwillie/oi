@@ -1,5 +1,5 @@
 package leetcode.editor.cn;
- 
+
 //给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。 
 //
 // 请你将两个数相加，并以相同形式返回一个表示和的链表。 
@@ -39,36 +39,71 @@ package leetcode.editor.cn;
 // 0 <= Node.val <= 9 
 // 题目数据保证列表表示的数字不含前导零 
 // 
-// Related Topics 递归 链表 数学 👍 7360 👎 0
+// Related Topics 递归 链表 数学 👍 7408 👎 0
 
-public class _2_两数相加{
+public class _2_两数相加 {
     public static void main(String[] args) {
         Solution solution = new _2_两数相加().new Solution();
-         
+
     }
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            // 设置dummyNode
+            ListNode dummy = new ListNode(-1);
+            ListNode cur = dummy;
+
+            // 这是逆序的
+            ListNode lx = l1, ly = l2;
+            int x = 0, y = 0, carry = 0, sum = 0;
+            while(lx != null || ly != null) {
+                x = lx == null ? 0 : lx.val;
+                lx = lx == null ? null : lx.next;
+                y = ly == null ? 0 : ly.val;
+                ly = ly == null ? null : ly.next;
+                sum = x + y + carry;
+
+                carry = sum / 10;
+                sum = sum % 10;
+                cur.next = new ListNode(sum);
+                cur = cur.next;
+            }
+
+            if(carry == 1) {
+                cur.next = new ListNode(carry);
+            }
+            return dummy.next;
+        }
+    }
+
+//leetcode submit region end(Prohibit modification and deletion)
+
+}
 
 class ListNode {
     int val;
     ListNode next;
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
 
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        return null;
+    ListNode() {
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
 
+    ListNode(int val) {
+        this.val = val;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
+    }
 }
