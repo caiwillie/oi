@@ -38,26 +38,28 @@ public class _22_括号生成 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        List<String> ans = new ArrayList<>();
+
         public List<String> generateParenthesis(int n) {
-            List<String> ans = new ArrayList<String>();
-            backtrack(ans, new StringBuilder(), 0, 0, n);
+            backtrack(new StringBuilder(), 0, 0, n);
             return ans;
         }
 
-        public void backtrack(List<String> ans, StringBuilder cur, int open, int close, int max) {
+        public void backtrack(StringBuilder cur, int open, int close, int max) {
             if (cur.length() == max * 2) {
                 ans.add(cur.toString());
                 return;
             }
             if (open < max) {
                 cur.append('(');
-                backtrack(ans, cur, open + 1, close, max);
+                backtrack(cur, open + 1, close, max);
                 // 删除指定位置的字符
                 cur.deleteCharAt(cur.length() - 1);
             }
             if (close < open) {
                 cur.append(')');
-                backtrack(ans, cur, open, close + 1, max);
+                backtrack(cur, open, close + 1, max);
                 cur.deleteCharAt(cur.length() - 1);
             }
         }

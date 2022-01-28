@@ -57,7 +57,8 @@ import java.util.HashSet;
 public class _3_无重复字符的最长子串 {
     public static void main(String[] args) {
         Solution solution = new _3_无重复字符的最长子串().new Solution();
-
+        int ans = solution.lengthOfLongestSubstring("abcabcbb");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -68,16 +69,19 @@ public class _3_无重复字符的最长子串 {
             int max = 0;
             int left = 0, right = 0; // 左右指针
             char[] chars = s.toCharArray();
-            for (; right < chars.length; right++) {
+            while(right < chars.length) {
                 char c = chars[right];
-                for (; left < right && set.contains(c); left++) {
+                if(set.contains(c)) {
                     // 如果发现当前字符已经存在，从left开始逐个往前删除
                     set.remove(chars[left]);
+                    left++;
+                } else {
+                    set.add(c);
+                    max = Math.max(max, right - left + 1);
+                    right++;
                 }
-
-                set.add(c);
-                max = Math.max(max, right - left + 1);
             }
+
             return max;
         }
     }
