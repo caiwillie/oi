@@ -30,6 +30,9 @@ package leetcode.editor.cn;
 // 
 // Related Topics 并查集 数组 哈希表 👍 1069 👎 0
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class _128_最长连续序列 {
     public static void main(String[] args) {
         Solution solution = new _128_最长连续序列().new Solution();
@@ -38,23 +41,27 @@ public class _128_最长连续序列 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        int length = 0;
-        int[] nums = null;
-
-
-        public int longestConsecutive(int[] $nums) {
-            length = $nums.length;
-            nums = new int[length + 1];
-            System.arraycopy($nums, 0, nums, 1, length);
-            // 初始话第一个节点为极大值
-            nums[0] = Integer.MAX_VALUE;
-            int i = 1;
-            while(i <= length) {
-                if(i > nums[i - 1]) {
-
-                }
+        public int longestConsecutive(int[] nums) {
+            // 建立一个存储所有数的哈希表，同时起到去重功能
+            Set<Integer> set = new HashSet<>();
+            for (int num : nums) {
+                set.add(num);
             }
-            return 0;
+
+            int ans = 0;
+            // 遍历所有数字，已经经过去重
+            for (int num : set) {
+                int cur = num;
+                // 只有当num-1不存在时，才开始向后遍历num+1，num+2，num+3......
+                if (!set.contains(cur - 1)) {
+                    while (set.contains(cur + 1)) {
+                        cur++;
+                    }
+                }
+                // [num, cur]之间是连续的，数字有cur - num + 1个
+                ans = Math.max(ans, cur - num + 1);
+            }
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
