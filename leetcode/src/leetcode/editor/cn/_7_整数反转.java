@@ -44,7 +44,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数学 👍 3369 👎 0
 
-public class _7_整数反转 {
+class _7_整数反转 {
     public static void main(String[] args) {
         Solution solution = new _7_整数反转().new Solution();
         int reverse = solution.reverse(-123);

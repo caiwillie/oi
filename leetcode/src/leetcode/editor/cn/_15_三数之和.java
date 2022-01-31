@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class _15_三数之和 {
+class _15_三数之和 {
     public static void main(String[] args) {
         Solution solution = new _15_三数之和().new Solution();
         int[] nums = {-1, 0, 1, 2, -1, -4};

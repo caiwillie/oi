@@ -40,7 +40,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class _102_二叉树的层序遍历 {
+class _102_二叉树的层序遍历 {
     public static void main(String[] args) {
         Solution solution = new _102_二叉树的层序遍历().new Solution();
 

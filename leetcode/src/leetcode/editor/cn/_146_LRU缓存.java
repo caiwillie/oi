@@ -53,7 +53,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 设计 哈希表 链表 双向链表 👍 1871 👎 0
 
-public class _146_LRU缓存{
+class _146_LRU缓存{
     public static void main(String[] args) {
         LRUCache solution = new _146_LRU缓存().new LRUCache(4);
          

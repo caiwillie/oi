@@ -36,9 +36,12 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 回溯 👍 1742 👎 0
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
-public class _46_全排列 {
+class _46_全排列 {
     public static void main(String[] args) {
         Solution solution = new _46_全排列().new Solution();
         int[] nums = {1, 2, 3};

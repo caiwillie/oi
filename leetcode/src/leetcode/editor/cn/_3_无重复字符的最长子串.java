@@ -54,7 +54,7 @@ abcabcbb
 
 import java.util.HashSet;
 
-public class _3_无重复字符的最长子串 {
+class _3_无重复字符的最长子串 {
     public static void main(String[] args) {
         Solution solution = new _3_无重复字符的最长子串().new Solution();
         int ans = solution.lengthOfLongestSubstring("abcabcbb");

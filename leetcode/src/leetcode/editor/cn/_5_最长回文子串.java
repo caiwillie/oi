@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字符串 动态规划 👍 4624 👎 0
 
-public class _5_最长回文子串 {
+class _5_最长回文子串 {
     public static void main(String[] args) {
         Solution solution = new _5_最长回文子串().new Solution();
 

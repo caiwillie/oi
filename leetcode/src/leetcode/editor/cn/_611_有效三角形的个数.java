@@ -22,7 +22,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 贪心 数组 双指针 二分查找 排序 👍 341 👎 0
 
-public class _611_有效三角形的个数 {
+class _611_有效三角形的个数 {
     public static void main(String[] args) {
         Solution solution = new _611_有效三角形的个数().new Solution();
 

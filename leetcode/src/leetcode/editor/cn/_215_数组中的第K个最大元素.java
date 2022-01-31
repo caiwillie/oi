@@ -29,7 +29,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 分治 快速选择 排序 堆（优先队列） 👍 1463 👎 0
 
-public class _215_数组中的第K个最大元素 {
+class _215_数组中的第K个最大元素 {
     public static void main(String[] args) {
         Solution solution = new _215_数组中的第K个最大元素().new Solution();
 

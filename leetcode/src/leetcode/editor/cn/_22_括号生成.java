@@ -30,7 +30,7 @@ package leetcode.editor.cn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class _22_括号生成 {
+class _22_括号生成 {
     public static void main(String[] args) {
         Solution solution = new _22_括号生成().new Solution();
 

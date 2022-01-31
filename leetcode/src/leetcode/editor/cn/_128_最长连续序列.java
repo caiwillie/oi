@@ -33,7 +33,7 @@ package leetcode.editor.cn;
 import java.util.HashSet;
 import java.util.Set;
 
-public class _128_最长连续序列 {
+class _128_最长连续序列 {
     public static void main(String[] args) {
         Solution solution = new _128_最长连续序列().new Solution();
 

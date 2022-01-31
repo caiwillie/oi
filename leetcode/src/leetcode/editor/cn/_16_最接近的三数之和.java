@@ -36,7 +36,7 @@ package leetcode.editor.cn;
 
 import java.util.Arrays;
 
-public class _16_最接近的三数之和 {
+class _16_最接近的三数之和 {
 
     public static void main(String[] args) {
         Solution solution = new _16_最接近的三数之和().new Solution();

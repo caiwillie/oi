@@ -41,7 +41,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 递归 链表 数学 👍 7408 👎 0
 
-public class _2_两数相加 {
+class _2_两数相加 {
     public static void main(String[] args) {
         Solution solution = new _2_两数相加().new Solution();
 

@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class _56_合并区间 {
+class _56_合并区间 {
     public static void main(String[] args) {
         Solution solution = new _56_合并区间().new Solution();
         int[][] intervals = new int[][]{{2, 3}, {4, 5}, {6, 7}, {8, 9}, {1, 10}};

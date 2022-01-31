@@ -48,7 +48,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 贪心 数组 双指针 👍 3146 👎 0
 
-public class _11_盛最多水的容器 {
+class _11_盛最多水的容器 {
     public static void main(String[] args) {
         Solution solution = new _11_盛最多水的容器().new Solution();
 
