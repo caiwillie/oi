@@ -41,6 +41,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 递归 链表 双指针 👍 785 👎 0
 
+import java.util.*;
+
 class _143_重排链表 {
     public static void main(String[] args) {
         Solution solution = new _143_重排链表().new Solution();
@@ -60,8 +62,32 @@ class _143_重排链表 {
      * }
      */
     class Solution {
-        public void reorderList(ListNode head) {
 
+        List<ListNode> list = new ArrayList<>();
+
+        public void reorderList(ListNode head) {
+            while(head != null) {
+                list.add(head);
+                head = head.next;
+            }
+
+            ListNode dummy = new ListNode(-1);
+            ListNode current = dummy;
+            int i = 0, j = list.size() - 1;
+            while(i <= j) {
+                ListNode n1 = list.get(i);
+                current.next = n1;
+                if(i < j) {
+                    ListNode n2 = list.get(j);
+                    n1.next = n2;
+                    n2.next = null;
+                    current = n2;
+                } else {
+                    n1.next = null;
+                }
+                i++;
+                j--;
+            }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
