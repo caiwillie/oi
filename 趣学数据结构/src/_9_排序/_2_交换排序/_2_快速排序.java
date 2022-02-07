@@ -32,7 +32,7 @@ public class _2_快速排序 {
                 swap(i, j);
                 i++;
             }
-            while(i < j && r[i] >= pivot) i++;
+            while(i < j && r[i] <= pivot) i++;
             if(i < j) {
                 swap(i, j);
                 j--;

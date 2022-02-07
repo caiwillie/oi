@@ -39,13 +39,34 @@ package leetcode.editor.cn;
 class _45_跳跃游戏II {
     public static void main(String[] args) {
         Solution solution = new _45_跳跃游戏II().new Solution();
-        return;
+        int[] nums = {2,1};
+        int ans = solution.jump(nums);
+        System.out.println(ans);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int jump(int[] nums) {
-            return 0;
+
+        int length = 0;
+        int[] nums = null;
+
+        public int jump(int[] $nums) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+            int i = 1, j = 2, count = 0;
+            while(j <= length) {
+                int next = i;
+                while(j <= length && j <= i + nums[i]) {
+                    if(j + nums[j] >= next + nums[next]) {
+                        next = j;
+                    }
+                    j++;
+                }
+                i = next;
+                count++;
+            }
+            return count;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
