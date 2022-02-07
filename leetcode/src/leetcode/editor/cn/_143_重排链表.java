@@ -48,6 +48,7 @@ class _143_重排链表 {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for singly-linked list.
      * public class ListNode {
@@ -66,3 +67,4 @@ class _143_重排链表 {
     //leetcode submit region end(Prohibit modification and deletion)
 
 }
+
