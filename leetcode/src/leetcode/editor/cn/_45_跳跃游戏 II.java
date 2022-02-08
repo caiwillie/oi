@@ -39,7 +39,7 @@ package leetcode.editor.cn;
 class _45_跳跃游戏II {
     public static void main(String[] args) {
         Solution solution = new _45_跳跃游戏II().new Solution();
-        int[] nums = {2,1};
+        int[] nums = {2,3,1,1,4};
         int ans = solution.jump(nums);
         System.out.println(ans);
     }
@@ -54,16 +54,15 @@ class _45_跳跃游戏II {
             length = $nums.length;
             nums = new int[length + 1];
             System.arraycopy($nums, 0, nums, 1, length);
-            int i = 1, j = 2, count = 0;
-            while(j <= length) {
-                int next = i;
-                while(j <= length && j <= i + nums[i]) {
-                    if(j + nums[j] >= next + nums[next]) {
-                        next = j;
-                    }
-                    j++;
+            int i = 1, max = 1, count = 0;
+
+            while(max < length) {
+                int nextMax = max;
+                while(i <= length && i <= max) {
+                    nextMax = Math.max(i + nums[i], nextMax);
+                    i++;
                 }
-                i = next;
+                max = nextMax;
                 count++;
             }
             return count;
