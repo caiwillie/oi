@@ -52,16 +52,54 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 双指针 👍 1519 👎 0
 
+import java.util.Arrays;
+
 class _31_下一个排列 {
     public static void main(String[] args) {
         Solution solution = new _31_下一个排列().new Solution();
-
+        int[] nums = {1, 3, 2};
+        solution.nextPermutation(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public void nextPermutation(int[] nums) {
 
+        int length  = 0;
+        int[] nums = null;
+
+        public void nextPermutation(int[] $nums) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+
+            boolean find = false;
+            // 从后往前找到第一个不是升序的位置
+            for (int i = length; i >= 2; i--) {
+                if (nums[i] > nums[i - 1]) {
+                    // 找到比这个位置大的最小值， 然后交换
+                    for (int j = length; j >= i; j--) {
+                        if (nums[j] > nums[i - 1]) {    //找到最右边大于nums[i-1]的数，并交换
+                            int tmp = nums[i - 1];
+                            nums[i - 1] = nums[j];
+                            nums[j] = tmp;
+                            break;
+                        }
+                    }
+                    // 将这个位置后面的数组倒序
+                    Arrays.sort(nums, i, length + 1);      //将后面降序变为升序
+                    find = true;
+                    break;
+                }
+            }
+
+            if(!find) {
+                // 如果前面没找到，说明已经是最大值
+
+                Arrays.sort(nums);
+            }
+
+            System.arraycopy(nums, 1, $nums, 0, length);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
