@@ -50,6 +50,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 递归 字符串 👍 1022 👎 0
 
+import java.util.LinkedList;
+
 class _394_字符串解码 {
     public static void main(String[] args) {
         Solution solution = new _394_字符串解码().new Solution();
@@ -59,7 +61,35 @@ class _394_字符串解码 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String decodeString(String s) {
-            return null;
+            StringBuilder content = new StringBuilder();
+            int multi = 0;
+            LinkedList<Integer> stackMulti = new LinkedList<>();
+            LinkedList<String> stackContent = new LinkedList<>();
+            for(Character c : s.toCharArray()) {
+                if(c == '[') {
+                    stackMulti.push(multi);
+                    stackContent.push(content.toString());
+                    multi = 0;
+                    content = new StringBuilder();
+                }
+                else if(c == ']') {
+                    StringBuilder tmp = new StringBuilder();
+                    int lastMulti = stackMulti.pop();
+                    // 当前文本内容累乘
+                    for(int i = 0; i < lastMulti; i++) tmp.append(content);
+                    // 累乘内容 加上 上一个数组前，在'['后的内容
+                    String lastContent = stackContent.pop();
+                    content = new StringBuilder(lastContent + tmp);
+                }
+                else if(c >= '0' && c <= '9') {
+                    // 乘数
+                    multi = multi * 10 + c - '0';
+                } else {
+                    // 字符串
+                    content.append(c);
+                }
+            }
+            return content.toString();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
