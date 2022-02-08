@@ -41,16 +41,43 @@ package leetcode.editor.cn;
 // 
 // Related Topics 贪心 数组 双指针 排序 👍 208 👎 0
 
+import java.util.Arrays;
+
 class _881_救生艇 {
     public static void main(String[] args) {
         Solution solution = new _881_救生艇().new Solution();
-
+        int[] people = {1, 2};
+        int limit = 3;
+        int ans = solution.numRescueBoats(people, 3);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int numRescueBoats(int[] people, int limit) {
-            return 0;
+
+        int length = 0;
+        int[] people = null;
+
+        public int numRescueBoats(int[] $people, int limit) {
+            Arrays.sort($people);
+            length = $people.length;
+            people = new int[length + 1];
+            System.arraycopy($people, 0, people, 1, length);
+
+            int left = 1, right = length, ans = 0;
+
+            while(left <= right) {
+                int weight = people[right] + people[left];
+                if(weight > limit) {
+                    // 仅仅右指针左移
+                    right--;
+                } else {
+                    left++;
+                    right--;
+                }
+                ans++;
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
