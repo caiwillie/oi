@@ -7,7 +7,7 @@ _${question.frontendQuestionId}_${question.title}
 package leetcode.editor.cn;
 
 ${question.content}
-public class _${question.frontendQuestionId}_${question.title}{
+class _${question.frontendQuestionId}_${question.title}{
     public static void main(String[] args) {
         Solution solution = new _${question.frontendQuestionId}_${question.title}().new Solution();
 
