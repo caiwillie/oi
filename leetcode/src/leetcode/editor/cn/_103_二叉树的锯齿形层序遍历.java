@@ -35,7 +35,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 广度优先搜索 二叉树 👍 585 👎 0
 
-import java.util.List;
+import java.util.*;
 
 class _103_二叉树的锯齿形层序遍历 {
     public static void main(String[] args) {
@@ -60,9 +60,44 @@ class _103_二叉树的锯齿形层序遍历 {
      * }
      */
     class Solution {
+
+        LinkedList<TreeNode> q = new LinkedList<>();
+
         public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-            return null;
+            List<List<Integer>> ans = new ArrayList<>();
+
+            if(root == null) return ans;
+
+            // flag == true 表示从左往右，flag == false 表示从右往左
+            boolean flag = true;
+
+            // 初始化
+            q.push(root);
+
+            while(!q.isEmpty()) {
+                List<Integer> l = new ArrayList<>();
+                int length = q.size();
+
+                for (int i = 0; i < length; i++) {
+                    TreeNode n = q.poll();
+                    if(n.left != null) q.offer(n.left);
+                    if(n.right != null) q.offer(n.right);
+                    l.add(n.val);
+                }
+
+                if(!flag) {
+                    Collections.reverse(l);
+                }
+
+                flag = !flag;
+
+                ans.add(l);
+            }
+
+
+            return ans;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-public class ListNode {
+class ListNode {
     int val;
     ListNode next;
 
