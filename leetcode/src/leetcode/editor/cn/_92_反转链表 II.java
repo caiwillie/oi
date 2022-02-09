@@ -36,7 +36,14 @@ package leetcode.editor.cn;
 
 class _92_反转链表II {
     public static void main(String[] args) {
+        ListNode l5 = new ListNode(5, null);
+        ListNode l4 = new ListNode(4, l5);
+        ListNode l3 = new ListNode(3, l4);
+        ListNode l2 = new ListNode(2, l3);
+        ListNode l1 = new ListNode(1, l2);
+
         Solution solution = new _92_反转链表II().new Solution();
+        solution.reverseBetween(l1, 2, 4);
 
     }
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -53,7 +60,28 @@ class _92_反转链表II {
      */
     class Solution {
         public ListNode reverseBetween(ListNode head, int left, int right) {
-            return null;
+            ListNode dummy = new ListNode(-1, head);
+            ListNode g = dummy;
+            ListNode pre = null, cur = null;
+            int count = 1;
+            while(count < left) {
+                g = g.next;
+                count++;
+            }
+
+            pre = g.next; cur = pre.next;
+            while(count < right) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+                count++;
+            }
+
+            g.next.next = cur;
+            g.next = pre;
+
+            return dummy.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
