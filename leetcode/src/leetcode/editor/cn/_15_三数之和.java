@@ -66,6 +66,7 @@ class _15_三数之和 {
                         right--;
                     } else {
                         if (sum == 0) {
+                            // left > i + 1 就说明只有不相邻, 并且等于前一个
                             if (!(left > i + 1 && nums[left] == nums[left - 1])) {
                                 ans.add(Arrays.asList(nums[i], nums[left], nums[right]));
                             }
