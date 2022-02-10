@@ -40,7 +40,7 @@ class _24_两两交换链表中的节点 {
         Solution solution = new _24_两两交换链表中的节点().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
+    //leetcode submit region begin(Prohibit modification and deletion)
 
     /**
      * Definition for singly-linked list.
