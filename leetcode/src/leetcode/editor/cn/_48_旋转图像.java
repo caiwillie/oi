@@ -42,11 +42,40 @@ class _48_旋转图像 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public void rotate(int[][] matrix) {
-            int t = 0, l = 0, r = matrix[0].length - 1, b = matrix.length - 1;
+            int n = matrix.length - 1;
+            int t = 0, l = 0, r = n, b = n;
 
             while(true) {
 
-                for (int i = l; i <= r; i++)
+                int[] temp = new int[r - l];
+
+                // 将上面一行移出
+                for (int i = l; i < r; i++) {
+                    temp[i - l] = matrix[t][i];
+                }
+
+                for (int i = b; i > t; i--) {
+                    matrix[t][n - i] = matrix[i][l];
+                }
+
+                for (int i = r; i > l; i--) {
+                    matrix[n -i][l] = matrix[t][i];
+                }
+
+                for (int i = t; i < b; i++) {
+                    matrix[b][n - i] = matrix[i][r];
+                }
+
+                for (int i = l; i < r; i++) {
+                    matrix[n - i][r] = temp[i - l];
+                }
+
+                t++;
+                l++;
+                r--;
+                b--;
+
+                if(t > b) break;
             }
         }
     }
