@@ -59,6 +59,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 字符串 👍 446 👎 0
 
+import java.util.LinkedList;
+
 class _71_简化路径 {
     public static void main(String[] args) {
         Solution solution = new _71_简化路径().new Solution();
@@ -68,7 +70,29 @@ class _71_简化路径 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String simplifyPath(String path) {
-            return null;
+            LinkedList<String> d = new LinkedList<>();
+            int n = path.length();
+            int i = 0;
+            while(i < n) {
+                if (path.charAt(i) == '/') {
+                    i++;
+                    continue;
+                }
+                int j = i + 1;
+                while (j < n && path.charAt(j) != '/') j++;
+                String item = path.substring(i, j);
+                if (item.equals("..")) {
+                    if (!d.isEmpty()) d.pop();
+                } else if (!item.equals(".")) {
+                    d.push(item);
+                }
+                i = j;
+
+            }
+
+            StringBuilder sb = new StringBuilder();
+            while (!d.isEmpty()) sb.append("/" + d.pollFirst());
+            return sb.length() == 0 ? "/" : sb.toString();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
