@@ -58,8 +58,14 @@ package leetcode.editor.cn;
 
 class _25_K个一组翻转链表 {
     public static void main(String[] args) {
+        ListNode l5 = new ListNode(5, null);
+        ListNode l4 = new ListNode(4, l5);
+        ListNode l3 = new ListNode(3, l4);
+        ListNode l2 = new ListNode(2, l3);
+        ListNode l1 = new ListNode(1, l2);
         Solution solution = new _25_K个一组翻转链表().new Solution();
-
+        ListNode listNode = solution.reverseKGroup(l1, 2);
+        return;
     }
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -75,7 +81,31 @@ class _25_K个一组翻转链表 {
      */
     class Solution {
         public ListNode reverseKGroup(ListNode head, int k) {
-            return null;
+            ListNode dummy = new ListNode(-1, head);
+            ListNode g = dummy;
+            ListNode cur = g.next;
+
+            int i = 1;
+            while(cur != null && i <= k) {
+                cur = cur.next;
+                if(i == k) {
+                    // 这里cur被重置，在下面的while循环中会恢复
+                    ListNode pre = null; cur = g.next;
+                    while(i >= 1) {
+                        ListNode next = cur.next;
+                        cur.next = pre;
+                        pre = cur;
+                        cur = next;
+                        i--;
+                    }
+                    ListNode nextG = g.next;
+                    nextG.next = cur;
+                    g.next = pre;
+                    g = nextG;
+                }
+                i++;
+            }
+            return dummy.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

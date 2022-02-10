@@ -62,15 +62,14 @@ class _92_反转链表II {
         public ListNode reverseBetween(ListNode head, int left, int right) {
             ListNode dummy = new ListNode(-1, head);
             ListNode g = dummy;
-            ListNode pre = null, cur = null;
             int count = 1;
             while(count < left) {
                 g = g.next;
                 count++;
             }
 
-            pre = g.next; cur = pre.next;
-            while(count < right) {
+            ListNode pre = null, cur = g.next;
+            while(count <= right) {
                 ListNode next = cur.next;
                 cur.next = pre;
                 pre = cur;
