@@ -36,7 +36,9 @@ package leetcode.editor.cn;
 class _48_旋转图像 {
     public static void main(String[] args) {
         Solution solution = new _48_旋转图像().new Solution();
-
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        solution.rotate(matrix);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -59,7 +61,7 @@ class _48_旋转图像 {
                 }
 
                 for (int i = r; i > l; i--) {
-                    matrix[n -i][l] = matrix[t][i];
+                    matrix[i][l] = matrix[b][i];
                 }
 
                 for (int i = t; i < b; i++) {
@@ -67,7 +69,7 @@ class _48_旋转图像 {
                 }
 
                 for (int i = l; i < r; i++) {
-                    matrix[n - i][r] = temp[i - l];
+                    matrix[i][r] = temp[i - l];
                 }
 
                 t++;
