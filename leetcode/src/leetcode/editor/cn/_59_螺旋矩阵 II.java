@@ -38,7 +38,7 @@ class _59_螺旋矩阵II {
         public int[][] generateMatrix(int n) {
             int t = 0, l = 0, r = n - 1, b = n - 1;
             int[][] mat = new int[n][n];
-            int num = 1, tar = n * n;
+            int num = 1;
             while (true) {
                 for (int i = l; i <= r; i++) mat[t][i] = num++; // left to right.
                 t++;
