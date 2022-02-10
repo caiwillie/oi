@@ -37,8 +37,21 @@ class _343_整数拆分 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int integerBreak(int n) {
-            return 0;
+            int[] dp = new int[n + 1];
+            int i = 2;
+            while(i <= n) {
+                int curMax = 0;
+                int j = 1;
+                while(j < i) {
+                    curMax = Math.max(curMax, Math.max(j * (i - j), j * dp[i - j]));
+                    j++;
+                }
+                dp[i] = curMax;
+                i++;
+            }
+            return dp[n];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
