@@ -33,17 +33,23 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 数学 矩阵 👍 1157 👎 0
 
-class _48_旋转图像{
+class _48_旋转图像 {
     public static void main(String[] args) {
         Solution solution = new _48_旋转图像().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public void rotate(int[][] matrix) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void rotate(int[][] matrix) {
+            int t = 0, l = 0, r = matrix[0].length - 1, b = matrix.length - 1;
+
+            while(true) {
+
+                for (int i = l; i <= r; i++)
+            }
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }

@@ -58,7 +58,7 @@ class _54_螺旋矩阵 {
                 if (top > down) break;
 
                 // 右边界：从上往下扫描
-                for (int i = top; i <= down; ++i) {
+                for (int i = top; i <= down; i++) {
                     ans.add(matrix[i - 1][right - 1]);
                 }
                 // 右边界向左移动
@@ -66,7 +66,7 @@ class _54_螺旋矩阵 {
                 if (left > right) break;
 
                 // 下边界：从右往左扫描
-                for (int i = right; i >= left; --i) {
+                for (int i = right; i >= left; i--) {
                     ans.add(matrix[down - 1][i - 1]);
                 }
                 // 下边界上移
@@ -74,7 +74,7 @@ class _54_螺旋矩阵 {
                 if (top > down) break;
 
                 // 左边界：从下往上扫描
-                for (int i = down; i >= top; --i) {
+                for (int i = down; i >= top; i--) {
                     ans.add(matrix[i - 1][left - 1]);
                 }
                 // 左边界向右移动
