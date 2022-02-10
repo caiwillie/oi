@@ -87,11 +87,10 @@ class _71_简化路径 {
                     d.push(item);
                 }
                 i = j;
-
             }
 
             StringBuilder sb = new StringBuilder();
-            while (!d.isEmpty()) sb.append("/" + d.pollFirst());
+            while (!d.isEmpty()) sb.append("/" + d.pollLast());
             return sb.length() == 0 ? "/" : sb.toString();
         }
     }
