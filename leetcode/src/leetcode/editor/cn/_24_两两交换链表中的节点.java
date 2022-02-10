@@ -54,7 +54,35 @@ class _24_两两交换链表中的节点 {
      */
     class Solution {
         public ListNode swapPairs(ListNode head) {
-            return null;
+            return reverseKGroup(head, 2);
+        }
+
+        public ListNode reverseKGroup(ListNode head, int k) {
+            ListNode dummy = new ListNode(-1, head);
+            ListNode g = dummy;
+            ListNode cur = g.next;
+
+            int i = 1;
+            while(cur != null && i <= k) {
+                cur = cur.next;
+                if(i == k) {
+                    // 这里cur被重置，在下面的while循环中会恢复
+                    ListNode pre = null; cur = g.next;
+                    while(i >= 1) {
+                        ListNode next = cur.next;
+                        cur.next = pre;
+                        pre = cur;
+                        cur = next;
+                        i--;
+                    }
+                    ListNode nextG = g.next;
+                    nextG.next = cur;
+                    g.next = pre;
+                    g = nextG;
+                }
+                i++;
+            }
+            return dummy.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
