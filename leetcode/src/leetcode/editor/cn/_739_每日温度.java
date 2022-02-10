@@ -32,16 +32,36 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 数组 单调栈 👍 1011 👎 0
 
+import java.util.LinkedList;
+
 class _739_每日温度 {
     public static void main(String[] args) {
         Solution solution = new _739_每日温度().new Solution();
-
+        int[] temperatures = {73,74,75,71,69,72,76,73};
+        solution.dailyTemperatures(temperatures);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        LinkedList<Integer> stack = new LinkedList<>();
+
         public int[] dailyTemperatures(int[] temperatures) {
-            return null;
+            int length = temperatures.length;
+
+            int[] ans = new int[length];
+            int i = 0;
+            while(i < length) {
+                int temperature = temperatures[i];
+                while (!stack.isEmpty() && temperature > temperatures[stack.peek()]) {
+                    Integer pre = stack.pop();
+                    ans[pre] = i - pre;
+                }
+                stack.push(i);
+                i++;
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
