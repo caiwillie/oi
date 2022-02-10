@@ -37,7 +37,27 @@ class _416_分割等和子集 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public boolean canPartition(int[] nums) {
+        int length = 0;
+        int[] nums = null;
+
+        public boolean canPartition(int[] $nums) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+
+            // 题目已经说非空数组，可以不做非空判断
+            int sum = 0;
+            for (int num : $nums) {
+                sum += num;
+            }
+            // 特判：如果是奇数，就不符合要求
+            if ((sum & 1) == 1) {
+                return false;
+            }
+            int target = sum / 2;
+            // 创建二维状态数组，行：物品索引，列：容量（包括 0）
+            boolean[][] dp = new boolean[length + 1][target + 1];
+
             return true;
         }
     }
