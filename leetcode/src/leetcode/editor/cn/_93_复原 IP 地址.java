@@ -119,9 +119,9 @@ class _93_复原IP地址 {
                     if (!(remainSize <= remain && remain <= 3 * remainSize)) {
                         // 不满足剩余条件就剪枝
                         trim = true;
-                    } else if(chars[pre] == '0' && cur > pre) {
+                    } else if (chars[pre] == '0' && cur > pre) {
                         trim = true;
-                    }else if (cur == pre + 2) {
+                    } else if (cur == pre + 2) {
                         int num = Integer.parseInt(String.copyValueOf(chars, pre, 3));
                         if (num > 255) {
                             //不满足就跳过
