@@ -32,7 +32,9 @@ package leetcode.editor.cn;
 class _416_分割等和子集 {
     public static void main(String[] args) {
         Solution solution = new _416_分割等和子集().new Solution();
-
+        int[] nums = {1, 2, 5};
+        boolean ans = solution.canPartition(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -58,7 +60,28 @@ class _416_分割等和子集 {
             // 创建二维状态数组，行：物品索引，列：容量（包括 0）
             boolean[][] dp = new boolean[length + 1][target + 1];
 
-            return true;
+            // 初始化, 其实dp[1][0], dp[2][0], ..., dp[length][0] 都应该初始化为true, 不过可以延迟在flag = dp[i - 1][j]中初始化
+            dp[0][0] = true;
+
+            int i = 1;
+            while (i <= length) {
+                // 空就代表能装下
+                int j = 0;
+                while (j <= target) {
+                    boolean flag = false;
+                    if (nums[i] > j) {
+                        // 装不下, 只能选择上面dp[i-1][j]的结果
+                        flag = dp[i - 1][j];
+                    } else {
+                        // 能装下，可以不装选择上面dp[i-1][j]的结果，或者选择装dp[i - 1][target - j]
+                        flag = dp[i - 1][j] || dp[i - 1][j - nums[i]];
+                    }
+                    dp[i][j] = flag;
+                    j++;
+                }
+                i++;
+            }
+            return dp[length][target];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
