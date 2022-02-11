@@ -57,7 +57,18 @@ class _134_加油站 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int canCompleteCircuit(int[] gas, int[] cost) {
-            return 0;
+            //假设油箱里的汽油可以为负数，找到最小的负数就是出发点
+            int n = gas.length;
+            int curGas = 0, minGas = 0, minIndex = 0;//默认从0出发
+
+            for (int i = 0; i < n; i++) {
+                curGas = curGas + gas[i] - cost[i];//走过了第i段路后邮箱里的油
+                if (curGas < minGas) {
+                    minGas = curGas;
+                    minIndex = i + 1;//这里i如果是n-1的话，说明当前汽油比0小，返回-1,不会返回错误的n。
+                }
+            }
+            return curGas < 0 ? -1 : minIndex;//油箱为负值返回-1；
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
