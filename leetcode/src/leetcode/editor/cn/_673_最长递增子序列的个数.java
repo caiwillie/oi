@@ -37,14 +37,55 @@ package leetcode.editor.cn;
 class _673_最长递增子序列的个数 {
     public static void main(String[] args) {
         Solution solution = new _673_最长递增子序列的个数().new Solution();
-
+        int[] nums = {2, 2, 2, 2, 2};
+        int ans = solution.findNumberOfLIS(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findNumberOfLIS(int[] nums) {
-            return 0;
+
+        int length = 0;
+        int[] nums = null;
+
+        public int findNumberOfLIS(int[] $nums) {
+            int ans = 0;
+            int max = 0;
+
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+
+            nums[0] = Integer.MIN_VALUE;
+            int[] dp = new int[length + 1];
+            int[] counts = new int[length + 1];
+
+            counts[0] = 1;
+
+            int i = 1;
+            while (i <= length) {
+                int j = 0;
+                int curCount = 0;
+                int curMax = 0;
+                while (j < i) {
+                    if (nums[j] < nums[i]) {
+                        if (dp[j] + 1 > curMax) curCount = counts[j];
+                        else if (dp[j] + 1 == curMax) curCount += counts[j];
+                        curMax = Math.max(curMax, dp[j] + 1);
+                    }
+                    j++;
+                }
+                dp[i] = curMax;
+                counts[i] = curCount;
+                if (dp[i] > max) ans = counts[i];
+                else if (dp[i] == max) ans += counts[i];
+                max = Math.max(max, dp[i]);
+                i++;
+            }
+
+            return ans;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
