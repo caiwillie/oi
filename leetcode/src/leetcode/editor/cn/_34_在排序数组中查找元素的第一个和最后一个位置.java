@@ -75,11 +75,10 @@ class _34_在排序数组中查找元素的第一个和最后一个位置 {
         private int findFirst() {
             int left = 0, right = n - 1;
             while (left < right) {
+                // 取下限制
                 int mid = (left + right) / 2;
-                if (target == nums[mid])
+                if (target <= nums[mid])
                     right = mid;
-                else if (target < nums[mid])
-                    right = mid - 1;
                 else
                     left = mid + 1;
             }
@@ -91,12 +90,10 @@ class _34_在排序数组中查找元素的第一个和最后一个位置 {
             int left = 0, right = n - 1;
             while (left < right) {
                 int mid = (left + right + 1) / 2;
-                if (target == nums[mid])
+                if (target >= nums[mid])
                     left = mid;
-                else if (target < nums[mid])
-                    right = mid - 1;
                 else
-                    left = mid + 1;
+                    right = mid - 1;
             }
             return nums[left] == target ? left : -1;
 
