@@ -37,8 +37,41 @@ class _718_最长重复子数组 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findLength(int[] nums1, int[] nums2) {
-            return 0;
+
+
+        int length1 = 0;
+        int[] nums1 = null;
+        int length2 = 0;
+        int[] nums2 = null;
+
+        public int findLength(int[] $nums1, int[] $nums2) {
+            int ans = 0;
+
+            length1 = $nums1.length;
+            nums1 = new int[length1 + 1];
+            System.arraycopy($nums1, 0, nums1, 1, length1);
+
+            length2 = $nums2.length;
+            nums2 = new int[length2 + 1];
+            System.arraycopy($nums2, 0, nums2, 1, length2);
+
+            int dp[][] = new int[length1 + 1][length2 + 2];
+
+            int i = 1;
+            while(i <= length1) {
+                int j = 1;
+                while(j <= length2) {
+                    if(nums1[i] == nums2[j]) {
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                        ans = Math.max(ans, dp[i][j]);
+                    } else {
+                        dp[i][j] = 0;
+                    }
+                    j++;
+                }
+                i++;
+            }
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
