@@ -49,13 +49,42 @@ package leetcode.editor.cn;
 class _1143_最长公共子序列 {
     public static void main(String[] args) {
         Solution solution = new _1143_最长公共子序列().new Solution();
-
+        int ans = solution.longestCommonSubsequence("abcde", "ace");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length1 = 0;
+        char[] chars1 = null;
+        int length2 = 0;
+        char[] chars2 = null;
         public int longestCommonSubsequence(String text1, String text2) {
-            return 0;
+            length1 = text1.length();
+            chars1 = new char[length1 + 1];
+            System.arraycopy(text1.toCharArray(), 0, chars1, 1, length1);
+
+            length2 = text2.length();
+            chars2 = new char[length2 + 1];
+            System.arraycopy(text2.toCharArray(), 0, chars2, 1, length2);
+
+            int dp[][] = new int[length1 + 1][length2 + 1];
+
+            int i = 1;
+            while(i <= length1) {
+                int j = 1;
+                while(j <= length2) {
+                    if(chars1[i] == chars2[j]) {
+                        dp[i][j] = dp[i - 1][j - 1] + 1;
+                    } else {
+                        dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+                    }
+                    j++;
+                }
+                i++;
+            }
+            return dp[length1][length2];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
