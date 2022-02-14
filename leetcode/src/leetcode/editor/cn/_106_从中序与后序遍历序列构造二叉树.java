@@ -57,9 +57,45 @@ class _106_从中序与后序遍历序列构造二叉树 {
      * }
      */
     class Solution {
+
+        int[] inorder = null;
+
+        int[] postorder = null;
+
         public TreeNode buildTree(int[] inorder, int[] postorder) {
-            return null;
+            this.inorder = inorder;
+            this.postorder = postorder;
+
+            int is = 0;
+            int ie = inorder.length - 1;
+            int ps = 0;
+            int pe = postorder.length - 1;
+
+            return buildTree(is, ie, ps, pe);
         }
+
+        public TreeNode buildTree(int is, int ie, int ps, int pe) {
+            if (pe < ps) {
+                return null;
+            }
+
+            int root = postorder[pe];
+
+            int i = is;
+            while (i <= ie) {
+                if (inorder[i] == root) {
+                    break;
+                }
+                i++;
+            }
+
+            TreeNode left = buildTree(is, i - 1, ps, ps + i - 1 - is);
+
+            TreeNode right = buildTree(i + 1, ie, ps + i - is, pe - 1);
+
+            return new TreeNode(root, left, right);
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
