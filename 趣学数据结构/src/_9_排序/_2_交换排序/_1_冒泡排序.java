@@ -1,6 +1,6 @@
 package _9_排序._2_交换排序;
 
-public class _1_冒泡排序 {
+class _1_冒泡排序 {
 
     static int length = 0;
     static int[] r = null;
@@ -12,7 +12,7 @@ public class _1_冒泡排序 {
 
         for (int i = length; i >= 1; i--) {
             for (int j = 1; j <= i; j++) {
-                if(r[j] > r[j + 1]) {
+                if (r[j] > r[j + 1]) {
                     swap(j, j + 1);
                 }
             }

@@ -1,12 +1,9 @@
 package _9_排序._2_交换排序;
 
-public class _2_快速排序 {
+class _2_快速排序 {
 
     static int length;
     static int[] r;
-
-
-
 
     static void quickSort(int[] $r) {
         length = $r.length;
@@ -16,7 +13,7 @@ public class _2_快速排序 {
     }
 
     static void recursiveQuickSort(int[] r, int low, int high) {
-        if(low < high) {
+        if (low < high) {
             int middle = partition(r, low, high);
             recursiveQuickSort(r, low, middle - 1);
             recursiveQuickSort(r, middle + 1, high);
@@ -26,14 +23,14 @@ public class _2_快速排序 {
 
     static int partition(int[] r, int low, int high) {
         int i = low, j = high, pivot = r[low];
-        while(i < j) {
-            while(i < j && r[j] > pivot) j--;
-            if(i < j) {
+        while (i < j) {
+            while (i < j && r[j] > pivot) j--;
+            if (i < j) {
                 swap(i, j);
                 i++;
             }
-            while(i < j && r[i] <= pivot) i++;
-            if(i < j) {
+            while (i < j && r[i] <= pivot) i++;
+            if (i < j) {
                 swap(i, j);
                 j--;
             }
