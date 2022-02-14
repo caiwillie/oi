@@ -48,8 +48,38 @@ class _695_岛屿的最大面积 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int n, m;
+
         public int maxAreaOfIsland(int[][] grid) {
-            return 0;
+            n = grid.length;
+            m = grid[0].length;
+            int res = 0;
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[i].length; j++) {
+                    int nums = dfs(grid, i, j);
+                    res = Math.max(res, nums);
+                }
+            }
+
+            return res;
+        }
+
+        int dfs(int[][] grid, int i, int j) {
+            if (i < 0 || j < 0 || i >= n || j >= m) {
+                return 0;
+            }
+
+            if (grid[i][j] != 1) {
+                return 0;
+            } else {
+                grid[i][j] = 2;
+                int r1 = dfs(grid, i + 1, j);
+                int r2 = dfs(grid, i, j + 1);
+                int r3 = dfs(grid, i - 1, j);
+                int r4 = dfs(grid, i, j - 1);
+                return 1 + r1 + r2 + r3 + r4;
+            }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
