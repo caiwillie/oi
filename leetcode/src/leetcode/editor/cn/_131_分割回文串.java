@@ -47,8 +47,8 @@ class _131_分割回文串 {
         List<List<String>> ans = new ArrayList<>();
 
         int i = 0;
-        LinkedList<String> ss = new LinkedList<>();
-        LinkedList<String> cs = new LinkedList<>();
+        LinkedList<Integer> ss = new LinkedList<>();
+        LinkedList<Integer> cs = new LinkedList<>();
         int n;
 
         public List<List<String>> partition(String str) {
@@ -66,22 +66,17 @@ class _131_分割回文串 {
 
             push();
             while (!cs.isEmpty()) {
-                String c = cs.peek();
+                Integer c = cs.peek();
                 if (ss.peek() != c) {
                     ss.push(c);
-                    // 向下搜索
-                    i = i + c.length();
+                    i = c;
                     push();
                 } else {
-                    if (i == n) {
-                        ArrayList<String> temp = new ArrayList<>(ss);
-                        Collections.reverse(temp);
-                        ans.add(temp);
+                    if (c == n) {
+                        addAns();
                     }
                     cs.pop();
                     ss.pop();
-                    // 回溯
-                    i = i - c.length();
                 }
             }
 
@@ -89,15 +84,24 @@ class _131_分割回文串 {
         }
 
         void push() {
-            int j = i;
-            while (j < n) {
-                if (f[i][j]) {
-                    cs.push(str.substring(i, j + 1));
+            int start = i, end = i;
+            while (end < n) {
+                if (f[start][end++]) {
+                    cs.push(end);
                 }
-                j++;
             }
         }
 
+        void addAns() {
+            List<String> tempList = new ArrayList<>();
+            int start = 0, end = 0;
+            for (int j = ss.size() - 1; j >= 0; j--) {
+                end = ss.get(j);
+                tempList.add(str.substring(start, end));
+                start = end;
+            }
+            ans.add(tempList);
+        }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

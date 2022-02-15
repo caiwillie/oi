@@ -31,18 +31,66 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 数组 回溯 👍 1480 👎 0
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 class _78_子集 {
     public static void main(String[] args) {
         Solution solution = new _78_子集().new Solution();
-
+        int[] nums = {1, 2, 3};
+        List<List<Integer>> ans = solution.subsets(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 0;
+        int[] nums = null;
+
+        int i = 0;
+        LinkedList<Integer> cs = new LinkedList<>();
+        LinkedList<Integer> ss = new LinkedList<>();
+        List<List<Integer>> ans = new ArrayList<>();
+
         public List<List<Integer>> subsets(int[] nums) {
-            return null;
+
+            this.length = nums.length;
+            this.nums = nums;
+
+            push();
+            ans.add(Collections.emptyList());
+            while (!cs.isEmpty()) {
+                Integer c = cs.peek();
+                if (ss.peek() != c) {
+                    ss.push(c);
+                    addAns();
+                    i = c;
+                    push();
+                } else {
+                    ss.pop();
+                    cs.pop();
+                }
+            }
+
+            return ans;
+        }
+
+        void push() {
+            int j = i;
+            while (j++ < length) {
+                cs.push(j);
+            }
+        }
+
+        void addAns() {
+            List<Integer> tempList = new ArrayList<>();
+            for (int j = ss.size() - 1; j >= 0; j--) {
+                tempList.add(nums[ss.get(j) - 1]);
+            }
+            ans.add(tempList);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
