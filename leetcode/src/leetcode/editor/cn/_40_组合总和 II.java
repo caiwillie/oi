@@ -41,19 +41,81 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 回溯 👍 829 👎 0
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 class _40_组合总和II {
     public static void main(String[] args) {
         Solution solution = new _40_组合总和II().new Solution();
-
+        int[] nums = {10, 1, 2, 7, 6, 1, 5};
+        int target = 8;
+        List<List<Integer>> ans = solution.combinationSum2(nums, target);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 0;
+        int[] nums = null;
+
+        int target = 0;
+        int sum = 0;
+        int i = 0;
+        LinkedList<Integer> ss = new LinkedList<>();
+        LinkedList<Integer> cs = new LinkedList<>();
+
+        List<List<Integer>> ans = new ArrayList<>();
+
         public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-            return null;
+            this.length = candidates.length;
+            this.nums = candidates;
+            this.target = target;
+
+            Arrays.sort(candidates);
+
+            push();
+            while (!cs.isEmpty()) {
+                Integer c = cs.peek();
+                if (ss.peek() != c) {
+                    ss.push(c);
+                    sum = sum + nums[c];
+                    i = c + 1;
+                    push();
+                } else {
+                    if (sum == target) {
+                        add();
+                    }
+                    cs.pop();
+                    ss.pop();
+                    sum = sum - nums[c];
+                }
+            }
+            return ans;
         }
+
+        void push() {
+            int j = i;
+            int last = 0;
+            while (j < length) {
+                if (sum + nums[j] <= target && nums[j] != last) {
+                    cs.push(j);
+                    last = nums[j];
+                }
+                j++;
+            }
+        }
+
+        void add() {
+            List<Integer> tl = new ArrayList<>();
+            for (int j = ss.size() - 1; j >= 0; j--) {
+                tl.add(nums[ss.get(j)]);
+            }
+            ans.add(tl);
+        }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
