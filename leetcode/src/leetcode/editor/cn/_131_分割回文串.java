@@ -30,19 +30,74 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字符串 动态规划 回溯 👍 981 👎 0
 
-import java.util.List;
+import java.util.*;
 
 class _131_分割回文串 {
     public static void main(String[] args) {
         Solution solution = new _131_分割回文串().new Solution();
-
+        List<List<String>> ans = solution.partition("aab");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public List<List<String>> partition(String s) {
-            return null;
+
+        String str = null;
+        boolean[][] f;
+        List<List<String>> ans = new ArrayList<>();
+
+        int i = 0;
+        LinkedList<String> ss = new LinkedList<>();
+        LinkedList<String> cs = new LinkedList<>();
+        int n;
+
+        public List<List<String>> partition(String str) {
+            this.str = str;
+            n = str.length();
+            f = new boolean[n][n];
+            for (int i = 0; i < n; ++i) {
+                Arrays.fill(f[i], true);
+            }
+            for (int i = n - 1; i >= 0; --i) {
+                for (int j = i + 1; j < n; ++j) {
+                    f[i][j] = (str.charAt(i) == str.charAt(j)) && f[i + 1][j - 1];
+                }
+            }
+
+            push();
+            while (!cs.isEmpty()) {
+                String c = cs.peek();
+                if (ss.peek() != c) {
+                    ss.push(c);
+                    // 向下搜索
+                    i = i + c.length();
+                    push();
+                } else {
+                    if (i == n) {
+                        ArrayList<String> temp = new ArrayList<>(ss);
+                        Collections.reverse(temp);
+                        ans.add(temp);
+                    }
+                    cs.pop();
+                    ss.pop();
+                    // 回溯
+                    i = i - c.length();
+                }
+            }
+
+            return ans;
         }
+
+        void push() {
+            int j = i;
+            while (j < n) {
+                if (f[i][j]) {
+                    cs.push(str.substring(i, j + 1));
+                }
+                j++;
+            }
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
