@@ -65,7 +65,21 @@ class _443_压缩字符串 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int compress(char[] chars) {
-            return 0;
+            int n = chars.length, write = 0;
+            for (int i = 0; i < n; ) {
+                int j = i;
+                // j 负责找到后一个不相同的地方
+                while (j < n && chars[i] == chars[j])
+                    j++;
+                chars[write++] = chars[i];
+                if (j - i > 1) {
+                    String tmp = Integer.toString(j - i);
+                    for (int k = 0; k < tmp.length(); k++)
+                        chars[write++] = tmp.charAt(k);
+                }
+                i = j;
+            }
+            return write;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
