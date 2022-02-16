@@ -49,6 +49,7 @@ package leetcode.editor.cn;
 // Related Topics 数组 二分查找 前缀和 滑动窗口 👍 943 👎 0
 
 class _209_长度最小的子数组 {
+
     public static void main(String[] args) {
         Solution solution = new _209_长度最小的子数组().new Solution();
 
@@ -57,7 +58,15 @@ class _209_长度最小的子数组 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minSubArrayLen(int target, int[] nums) {
-            return 0;
+            int lo = 0, hi = 0, sum = 0, min = Integer.MAX_VALUE;
+            while (hi < nums.length) {
+                sum += nums[hi++];
+                while (sum >= target) {
+                    min = Math.min(min, hi - lo);
+                    sum -= nums[lo++];
+                }
+            }
+            return min == Integer.MAX_VALUE ? 0 : min;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
