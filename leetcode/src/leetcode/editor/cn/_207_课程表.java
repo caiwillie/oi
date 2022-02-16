@@ -57,17 +57,19 @@ class _207_课程表 {
         int[] indeg;
 
         public boolean canFinish(int numCourses, int[][] prerequisites) {
-            edges = new ArrayList<List<Integer>>();
+            edges = new ArrayList<>();
             for (int i = 0; i < numCourses; ++i) {
-                edges.add(new ArrayList<Integer>());
+                edges.add(new ArrayList<>());
             }
+
             indeg = new int[numCourses];
             for (int[] info : prerequisites) {
+                // 邻接矩阵
                 edges.get(info[1]).add(info[0]);
                 ++indeg[info[0]];
             }
 
-            Queue<Integer> queue = new LinkedList<Integer>();
+            Queue<Integer> queue = new LinkedList<>();
             for (int i = 0; i < numCourses; ++i) {
                 if (indeg[i] == 0) {
                     queue.offer(i);
