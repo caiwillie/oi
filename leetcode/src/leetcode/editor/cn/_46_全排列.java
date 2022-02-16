@@ -45,46 +45,68 @@ class _46_全排列 {
     public static void main(String[] args) {
         Solution solution = new _46_全排列().new Solution();
         int[] nums = {1, 2, 3};
-        List<List<Integer>> lists = solution.permute(nums);
+        List<List<Integer>> ans = solution.permute(nums);
         return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        public List<List<Integer>> permute(int[] nums) {
-            List<List<Integer>> ans = new ArrayList<>();
-            Arrays.sort(nums);
-            int length = nums.length;
-            int[] used = new int[length];
-            LinkedList<Integer> s = new LinkedList<>();
-            LinkedList<Integer> c = new LinkedList<>();
-            for (int i = 0; i < length; i++) {
-                c.push(i);
-            }
+        int length = 0;
+        int[] nums = null;
 
-            while(!c.isEmpty()) {
-                Integer index = c.peek();
-                if(used[index] == 0) {
+        int count = 0;
+        boolean[] used = null;
+        LinkedList<Integer> cs = new LinkedList<>();
+        LinkedList<Integer> ss = new LinkedList<>();
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        public List<List<Integer>> permute(int[] nums) {
+            Arrays.sort(nums);
+            this.length = nums.length;
+            this.nums = nums;
+            used = new boolean[length];
+
+            push();
+            while(!cs.isEmpty()) {
+                Integer c = cs.peek();
+                if(ss.peek() != c) {
                     // 方法进入
-                    used[index] = 1;
-                    s.push(nums[index]);
-                    for (int i = 0; i < length; i++) {
-                        if(used[i] == 0) {
-                            c.push(i);
-                        }
-                    }
+                    ss.push(c);
+                    used[c] = true;
+                    count++;
+                    push();
                 } else {
                     // 方法退出
-                    c.pop();
-                    used[index] = 0;
-                    if(s.size() == length) {
-                        ans.add(new ArrayList<>(s));
+                    if(count == length) {
+                        add();
                     }
-                    s.pop();
+                    ss.pop();
+                    cs.pop();
+                    used[c] = false;
+                    count--;
                 }
             }
             return ans;
+        }
+
+        void push() {
+            int i = 0;
+            while(i < length) {
+                if(!used[i]) {
+                    cs.push(i);
+                }
+                i++;
+            }
+        }
+
+        void add() {
+            List<Integer> tl = new ArrayList<>();
+            for (int i = ss.size() - 1; i >= 0; i--) {
+                tl.add(nums[ss.get(i)]);
+            }
+            ans.add(tl);
         }
 
     }
