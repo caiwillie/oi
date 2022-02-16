@@ -32,13 +32,16 @@ package leetcode.editor.cn;
 // Related Topics 数组 回溯 👍 940 👎 0
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 class _47_全排列II {
     public static void main(String[] args) {
         Solution solution = new _47_全排列II().new Solution();
-
+        int[] nums = {1, 1, 2};
+        List<List<Integer>> ans = solution.permuteUnique(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -47,19 +50,64 @@ class _47_全排列II {
         int length = 0;
         int[] nums = null;
 
-
-        int i = 0;
+        int count = 0;
+        boolean used[] = null;
         LinkedList<Integer> cs = new LinkedList<>();
         LinkedList<Integer> ss = new LinkedList<>();
 
         List<List<Integer>> ans = new ArrayList<>();
 
-        public List<List<Integer>> permuteUnique(int[] nums) {
-            this.length = nums.length;
-            this.nums = nums;
+        public List<List<Integer>> permuteUnique(int[] $nums) {
+            Arrays.sort($nums);
+            length = $nums.length;
+            nums = new int[length + 1];
+            used = new boolean[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+            nums[0] = Integer.MIN_VALUE;
 
-            return null;
+            push();
+            while (!cs.isEmpty()) {
+                Integer c = cs.peek();
+                if (ss.peek() != c) {
+                    ss.push(c);
+                    // 连续的都设置为used
+                    used[c] = true;
+                    count++;
+                    push();
+                } else {
+                    if (count == length) {
+                        add();
+                    }
+                    cs.pop();
+                    ss.pop();
+                    // 连续的都设置为used
+                    used[c] = false;
+                    count--;
+                }
+            }
+
+            return ans;
         }
+
+        void push() {
+            int i = 1;
+            while (i <= length) {
+                if (!used[i] && !(!used[i - 1] && nums[i] == nums[i - 1])) {
+                    cs.push(i);
+                }
+                i++;
+            }
+        }
+
+        void add() {
+            List<Integer> tl = new ArrayList<>();
+            for (int i = ss.size() - 1; i >= 0; i--) {
+                tl.add(nums[ss.get(i)]);
+            }
+            ans.add(tl);
+        }
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
