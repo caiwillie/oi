@@ -74,7 +74,17 @@ class _141_环形链表 {
      */
     public class Solution {
         public boolean hasCycle(ListNode head) {
-            return true;
+            ListNode slow = head, fast = head;
+            while(fast != null) {
+                slow = slow.next;
+                fast = fast.next;
+                if(fast != null) fast = fast.next;
+                if(slow == fast) {
+                    break;
+                }
+            }
+
+            return fast != null;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
