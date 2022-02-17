@@ -35,6 +35,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字符串 动态规划 👍 776 👎 0
 
+import java.util.Arrays;
+
 class _647_回文子串 {
     public static void main(String[] args) {
         Solution solution = new _647_回文子串().new Solution();
@@ -43,8 +45,27 @@ class _647_回文子串 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 0;
+        char[] chars = null;
+
         public int countSubstrings(String s) {
-            return 0;
+            int ans = 0;
+            length = s.length();
+            chars = new char[length + 1];
+            System.arraycopy(s.toCharArray(), 0, chars, 1, length);
+            boolean[][] dp = new boolean[length + 1][length + 1];
+
+            // 遍历顺序不一样
+            for (int i = length; i >= 1; --i) {
+                for (int j = i; j <= length; ++j) {
+                    dp[i][j] = (chars[i] == chars[j]) && (i + 1 > j - 1 || dp[i + 1][j - 1]);
+
+                    if(dp[i][j]) ans++;
+                }
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
