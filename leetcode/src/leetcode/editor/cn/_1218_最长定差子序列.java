@@ -40,16 +40,29 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 哈希表 动态规划 👍 205 👎 0
 
+import java.util.HashMap;
+import java.util.Map;
+
 class _1218_最长定差子序列 {
     public static void main(String[] args) {
         Solution solution = new _1218_最长定差子序列().new Solution();
-
+        int[] arr = {1,5,7,8,5,3,4,2,1};
+        int difference = -2;
+        int ans = solution.longestSubsequence(arr, difference);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public int longestSubsequence(int[] arr, int difference) {
-            return 0;
+            int ans = 0;
+            Map<Integer, Integer> dp = new HashMap<Integer, Integer>();
+            for (int v : arr) {
+                dp.put(v, dp.getOrDefault(v - difference, 0) + 1);
+                ans = Math.max(ans, dp.get(v));
+            }
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
