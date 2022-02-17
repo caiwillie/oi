@@ -46,9 +46,35 @@ class _221_最大正方形 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int n = 0;
+        int m = 0;
+
         public int maximalSquare(char[][] matrix) {
-            return 0;
+
+            int maxSide = 0;
+            n = matrix.length;
+            m = matrix[0].length;
+
+            int[][] dp = new int[n + 1][m + 1];
+
+            int i = 1;
+
+            while (i <= n) {
+                int j = 1;
+                while (j <= m) {
+                    if (matrix[i - 1][j - 1] == '1') {
+                        dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;
+                        maxSide = Math.max(maxSide, dp[i][j]);
+                    }
+                    j++;
+                }
+                i++;
+            }
+
+            return maxSide * maxSide;
         }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
