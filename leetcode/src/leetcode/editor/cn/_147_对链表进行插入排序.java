@@ -50,7 +50,14 @@ package leetcode.editor.cn;
 class _147_对链表进行插入排序 {
     public static void main(String[] args) {
         Solution solution = new _147_对链表进行插入排序().new Solution();
-
+        // -1,5,3,4,0
+        ListNode _0 = new ListNode(0, null);
+        ListNode _4 = new ListNode(4, _0);
+        ListNode _3 = new ListNode(3, _4);
+        ListNode _5 = new ListNode(5, _3);
+        ListNode __1 = new ListNode(-1, _5);
+        ListNode ans = solution.insertionSortList(__1);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -67,7 +74,26 @@ class _147_对链表进行插入排序 {
      */
     class Solution {
         public ListNode insertionSortList(ListNode head) {
-            return null;
+            ListNode dummy = new ListNode(Integer.MIN_VALUE, head);
+            ListNode cur = head, next = null, p = null, q = null;
+            while(cur != null) {
+                next = cur.next;
+                cur.next = null;
+
+                p = dummy;
+                q = dummy.next;
+
+                while(q != null && q.val < cur.val) {
+                    p = q;
+                    q = q.next;
+                }
+
+                p.next = cur;
+                if(cur != q) cur.next = q;
+
+                cur = next;
+            }
+            return dummy.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
