@@ -40,7 +40,7 @@ package leetcode.editor.cn;
 // 进阶： 
 //
 // 
-// 你可以不使用代码库中的排序函数来解决这道题吗？ 
+// 你可以不使用代码库中的排序函数来解决这道题吗？
 // 你能想出一个仅使用常数空间的一趟扫描算法吗？ 
 // 
 // Related Topics 数组 双指针 排序 👍 1162 👎 0
@@ -48,12 +48,49 @@ package leetcode.editor.cn;
 class _75_颜色分类 {
     public static void main(String[] args) {
         Solution solution = new _75_颜色分类().new Solution();
-
+        int[] nums = {0, 0};
+        solution.sortColors(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
         public void sortColors(int[] nums) {
+            int length = nums.length;
+            int l = 0, r = length - 1;
+
+            int count0 = 0;
+            int count1 = 0;
+
+            int temp = 0;
+
+            while (l < r) {
+                while (l <= length - 1 && nums[l] != 2) {
+                    if (nums[l] == 0) {
+                        count0++;
+                    } else {
+                        count1++;
+                    }
+                    nums[l] = 0;
+                    l++;
+                }
+
+                while (r >= 0 && nums[r] == 2) {
+                    r--;
+                }
+
+                // 交换
+                if(l < r) {
+                    temp = nums[l];
+                    nums[l] = nums[r];
+                    nums[r] = temp;
+                }
+            }
+
+            for (int i = count0; i < count0 + count1; i++) {
+                nums[i] = 1;
+            }
 
         }
     }
