@@ -43,7 +43,7 @@ package leetcode.editor.cn;
 
 class _384_打乱数组 {
     public static void main(String[] args) {
-        Solution solution = new _384_打乱数组().new Solution();
+        Solution solution = new _384_打乱数组().new Solution(null);
 
     }
 
