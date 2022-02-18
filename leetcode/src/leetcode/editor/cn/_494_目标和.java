@@ -44,17 +44,46 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 动态规划 回溯 👍 1057 👎 0
 
+import java.util.LinkedList;
+
 class _494_目标和 {
     public static void main(String[] args) {
         Solution solution = new _494_目标和().new Solution();
-
+        int[] nums = {1, 1, 1, 1, 1};
+        int target = 3;
+        int ans = solution.findTargetSumWays(nums, target);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findTargetSumWays(int[] nums, int target) {
-            return 0;
+
+        int length = 0;
+        int[] nums = null;
+
+        public int findTargetSumWays(int[] $nums, int target) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+
+            int[][] dp = new int[length + 1][2001];
+
+            dp[0][1000] = 1;
+
+
+            for (int i = 1; i <= length; i++) {
+                for (int j = 0; j < 2001; j++) {
+                    int add = j - nums[i] < 0 ? 0 : dp[i - 1][j - nums[i]];
+                    int minus = j + nums[i] > 2000 ? 0 : dp[i - 1][j + nums[i]];
+                    if(add != 0 || minus != 0) {
+                        dp[i][j] = add + minus;
+                    }
+                }
+            }
+            return dp[length][target + 1000];
         }
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
