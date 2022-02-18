@@ -40,7 +40,15 @@ package leetcode.editor.cn;
 class _98_验证二叉搜索树 {
     public static void main(String[] args) {
         Solution solution = new _98_验证二叉搜索树().new Solution();
+        TreeNode _3 = new TreeNode(3, null, null);
+        TreeNode _7 = new TreeNode(7, null, null);
+        TreeNode _6 = new TreeNode(6, _3, _7);
+        TreeNode _4 = new TreeNode(4, null, null);
+        TreeNode _5 = new TreeNode(5, _4, _6);
 
+        TreeNode _x = new TreeNode(2147483647, null, null);
+        boolean ans = solution.isValidBST(_x);
+        return;
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -61,8 +69,26 @@ class _98_验证二叉搜索树 {
      */
     class Solution {
         public boolean isValidBST(TreeNode root) {
-            return false;
+            return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
         }
+
+        public boolean isValid(TreeNode root, long min, long max) {
+            if(!(root.val > min && root.val < max)) {
+                return false;
+            }
+
+            if(root.left != null && !isValid(root.left, min, root.val)) {
+                return false;
+            }
+
+            if(root.right != null && !isValid(root.right, root.val, max)) {
+                return false;
+            }
+
+            return true;
+
+        }
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
