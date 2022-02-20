@@ -55,7 +55,38 @@ class _807_保持城市天际线 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxIncreaseKeepingSkyline(int[][] grid) {
-            return 0;
+            int ans = 0;
+
+            int cLength = grid.length;
+            int rLength = grid[0].length;
+
+            int[] cHighest = new int[cLength];
+            int[] rHighest = new int[rLength];
+
+            for (int i = 0; i < cLength; i++) {
+                int max = 0;
+                for (int j = 0; j < rLength; j++) {
+                    if(grid[j][i] > max) max = grid[j][i];
+                }
+                cHighest[i] = max;
+            }
+
+            for (int i = 0; i < rLength; i++) {
+                int max = 0;
+                for (int j = 0; j < cLength; j++) {
+                    if(grid[i][j] > max) max = grid[i][j];
+                }
+                rHighest[i] = max;
+            }
+
+            for (int i = 0; i < rLength; i++) {
+                for (int j = 0; j < cLength; j++) {
+                    int num = grid[i][j];
+                    ans += Math.min(rHighest[i] - num, cHighest[j] - num);
+                }
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
