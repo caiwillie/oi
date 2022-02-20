@@ -57,32 +57,32 @@ class _807_保持城市天际线 {
         public int maxIncreaseKeepingSkyline(int[][] grid) {
             int ans = 0;
 
-            int cLength = grid.length;
-            int rLength = grid[0].length;
+            int cl = grid.length;
+            int rl = grid[0].length;
 
-            int[] cHighest = new int[cLength];
-            int[] rHighest = new int[rLength];
+            int[] ch = new int[cl];
+            int[] rh = new int[rl];
 
-            for (int i = 0; i < cLength; i++) {
+            for (int i = 0; i < cl; i++) {
                 int max = 0;
-                for (int j = 0; j < rLength; j++) {
+                for (int j = 0; j < rl; j++) {
                     if(grid[j][i] > max) max = grid[j][i];
                 }
-                cHighest[i] = max;
+                ch[i] = max;
             }
 
-            for (int i = 0; i < rLength; i++) {
+            for (int i = 0; i < rl; i++) {
                 int max = 0;
-                for (int j = 0; j < cLength; j++) {
+                for (int j = 0; j < cl; j++) {
                     if(grid[i][j] > max) max = grid[i][j];
                 }
-                rHighest[i] = max;
+                rh[i] = max;
             }
 
-            for (int i = 0; i < rLength; i++) {
-                for (int j = 0; j < cLength; j++) {
+            for (int i = 0; i < rl; i++) {
+                for (int j = 0; j < cl; j++) {
                     int num = grid[i][j];
-                    ans += Math.min(rHighest[i] - num, cHighest[j] - num);
+                    ans += Math.min(rh[i] - num, ch[j] - num);
                 }
             }
 
