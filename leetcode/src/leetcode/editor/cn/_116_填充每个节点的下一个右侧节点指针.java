@@ -55,6 +55,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 深度优先搜索 广度优先搜索 链表 二叉树 👍 676 👎 0
 
+import java.util.LinkedList;
+
 class _116_填充每个节点的下一个右侧节点指针 {
     public static void main(String[] args) {
         Solution solution = new _116_填充每个节点的下一个右侧节点指针().new Solution();
@@ -85,8 +87,29 @@ class Node {
 */
 
     class Solution {
+
+        LinkedList<Node> s = new LinkedList<>();
+
         public Node connect(Node root) {
-            return null;
+            offer(root);
+            while(!s.isEmpty()) {
+                int count = s.size();
+                Node pre = null;
+                while(count > 0) {
+                    Node cur = s.poll();
+                    offer(cur.left);
+                    offer(cur.right);
+                    if(pre != null) pre.next = cur;
+                    pre = cur;
+                    count--;
+                }
+            }
+
+            return root;
+        }
+
+        void offer(Node root) {
+            if(root != null) s.offer(root);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
