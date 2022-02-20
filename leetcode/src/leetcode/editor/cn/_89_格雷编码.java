@@ -47,17 +47,20 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 数学 回溯 👍 473 👎 0
 
-class _89_格雷编码{
+import java.util.List;
+
+class _89_格雷编码 {
     public static void main(String[] args) {
         Solution solution = new _89_格雷编码().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public List<Integer> grayCode(int n) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public List<Integer> grayCode(int n) {
+            return null;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
