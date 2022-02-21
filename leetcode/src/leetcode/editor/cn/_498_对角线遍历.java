@@ -34,7 +34,7 @@ package leetcode.editor.cn;
 class _498_对角线遍历 {
     public static void main(String[] args) {
         Solution solution = new _498_对角线遍历().new Solution();
-        int[][] mat = {{3}, {2}};
+        int[][] mat = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         int[] ans = solution.findDiagonalOrder(mat);
         return;
     }
@@ -47,46 +47,32 @@ class _498_对角线遍历 {
 
 
         public int[] findDiagonalOrder(int[][] mat) {
-            m = mat.length; // r
-            n = mat[0].length; // c
+
+            m = mat.length;
+            n = mat[0].length;
+            int length = m * n; // 元素个数
+            int r = 0; //当前行
+            int c = 0; //当前列
 
             int[] ans = new int[m * n];
-
-            int r = 0, c = 0;
-            int i = 0;
-            boolean flag = true;
-            while (i < m * n) {
+            for (int i = 0; i < length; ++i) {
                 ans[i] = mat[r][c];
-                if (r == 0 && c == 0) {
-                    if(c != n - 1) {
+                if ((r + c) % 2 == 0) { // 右上
+                    if (c == n - 1) r++; // 如果是最后一列，不能再修改列数y了，会越界
+                    else if (r == 0) c++; // 如果是第一行，向右即可;
+                    else {
+                        r--;
                         c++;
-                    } else if (r != m - 1) {
-                        r++;
-                    }
-                } else if (r == m - 1 && c == n - 2) {
-                    c++;
-                } else {
-                    if (flag) {
-                        if (c > 0) {
-                            c--;
-                            r++;
-                        } else {
-                            r++;
-                            flag = false;
-                        }
-                    } else {
-                        if (r > 0) {
-                            r--;
-                            c++;
-                        } else {
-                            r++;
-                            flag = true;
-                        }
-                    }
+                    } // 正常右上
+                } else { // 左下
+                    if (r == m - 1) ++c; //如果是最后一行，不能再修改行数x了，会越界
+                    else if (c == 0) ++r; //如果是第一列，向下即可;
+                    else {
+                        ++r;
+                        --c;
+                    } //正常左下
                 }
-                i++;
             }
-
             return ans;
         }
     }
