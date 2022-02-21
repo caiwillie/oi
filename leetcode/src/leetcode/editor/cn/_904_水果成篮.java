@@ -59,16 +59,48 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 哈希表 滑动窗口 👍 160 👎 0
 
+import java.util.HashMap;
+import java.util.Map;
+
 class _904_水果成篮 {
     public static void main(String[] args) {
         Solution solution = new _904_水果成篮().new Solution();
-
+        int[] fruits = {1, 2, 1};
+        int ans = solution.totalFruit(fruits);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        int length = 0;
+
         public int totalFruit(int[] fruits) {
-            return 0;
+            int ans = 0;
+
+            length = fruits.length;
+            Map<Integer, Integer> map = new HashMap<>();
+            int i = 0, j = 0;
+
+            while (j < length) {
+                while (map.size() <= 2 && j < length) {
+                    map.put(fruits[j], map.getOrDefault(fruits[j], 0) + 1);
+                    j++;
+                }
+
+                ans = Math.max(ans, map.size() > 2 ? j - 1 - i : j - i);
+
+                while (map.size() > 2) {
+                    int temp = map.get(fruits[i]) - 1;
+                    if (temp > 0) {
+                        map.put(fruits[i], temp);
+                    } else {
+                        map.remove(fruits[i]);
+                    }
+                    i++;
+                }
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
