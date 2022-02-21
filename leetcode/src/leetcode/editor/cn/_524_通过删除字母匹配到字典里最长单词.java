@@ -33,6 +33,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 双指针 字符串 排序 👍 288 👎 0
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 class _524_通过删除字母匹配到字典里最长单词 {
@@ -44,7 +46,28 @@ class _524_通过删除字母匹配到字典里最长单词 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String findLongestWord(String s, List<String> dictionary) {
-            return null;
+            Collections.sort(dictionary, new Comparator<String>() {
+                public int compare(String word1, String word2) {
+                    if (word1.length() != word2.length()) {
+                        return word2.length() - word1.length();
+                    } else {
+                        return word1.compareTo(word2);
+                    }
+                }
+            });
+            for (String t : dictionary) {
+                int i = 0, j = 0;
+                while (i < t.length() && j < s.length()) {
+                    if (t.charAt(i) == s.charAt(j)) {
+                        ++i;
+                    }
+                    ++j;
+                }
+                if (i == t.length()) {
+                    return t;
+                }
+            }
+            return "";
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
