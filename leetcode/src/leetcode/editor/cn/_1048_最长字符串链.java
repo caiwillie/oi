@@ -57,16 +57,62 @@ import java.util.Comparator;
 class _1048_最长字符串链 {
     public static void main(String[] args) {
         Solution solution = new _1048_最长字符串链().new Solution();
-
+        String[] words = {"bdca", "bda", "ca", "dca", "a"};
+        int ans = solution.longestStrChain(words);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 0;
+
         public int longestStrChain(String[] words) {
+            int ans = 0;
             Arrays.sort(words, Comparator.comparingInt(String::length));
 
-            return 0;
+            length = words.length;
+            int[] dp = new int[length];
+            int i = 0;
+            while (i < length) {
+                int j = i - 1;
+                int max = 0;
+                while (j >= 0) {
+                    if(words[j].length() >= words[i].length()) {
 
+                    } else if (words[j].length() == words[i].length() - 1) {
+                        if (isMatch(words[i], words[j])) {
+                            max = Math.max(dp[j] + 1, max);
+                        }
+                    } else {
+                        break;
+                    }
+                    j--;
+                }
+                dp[i] = Math.max(1, max);
+                ans = Math.max(dp[i], ans);
+                i++;
+            }
+
+            return ans;
+
+
+        }
+
+        boolean isMatch(String str1, String str2) {
+            int i = 0, j = 0;
+            while (i < str1.length() && j < str2.length()) {
+                if (str1.charAt(i) == str2.charAt(j)) {
+                    j++;
+                }
+                i++;
+            }
+
+            if (j != str2.length()) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
