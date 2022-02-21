@@ -52,7 +52,20 @@ class _287_寻找重复数 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findDuplicate(int[] nums) {
-            return 0;
+            int slow = 0;
+            int fast = 0;
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            while(slow != fast){
+                slow = nums[slow];
+                fast = nums[nums[fast]];
+            }
+            int pre = 0;
+            while(pre != slow){
+                pre = nums[pre];
+                slow = nums[slow];
+            }
+            return pre;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
