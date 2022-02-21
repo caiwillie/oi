@@ -46,13 +46,37 @@ package leetcode.editor.cn;
 class _73_矩阵置零 {
     public static void main(String[] args) {
         Solution solution = new _73_矩阵置零().new Solution();
+        int[][] matrix = {{0, 1, 2, 0}, {3, 4, 5, 2}, {1, 3, 1, 5}};
+        solution.setZeroes(matrix);
 
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int m, n;
+
         public void setZeroes(int[][] matrix) {
-            return;
+            m = matrix.length;
+            n = matrix[0].length;
+
+            boolean[] rowZero = new boolean[m];
+            boolean[] colZero = new boolean[n];
+            int row = matrix.length;
+            int col = matrix[0].length;
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    if (matrix[i][j] == 0) {
+                        rowZero[i] = true;
+                        colZero[j] = true;
+                    }
+                }
+            }
+            for (int i = 0; i < row; i++) {
+                for (int j = 0; j < col; j++) {
+                    if (rowZero[i] || colZero[j]) matrix[i][j] = 0;
+                }
+            }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
