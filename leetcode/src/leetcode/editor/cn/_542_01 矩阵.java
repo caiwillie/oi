@@ -38,9 +38,9 @@ package leetcode.editor.cn;
 // 
 // Related Topics 广度优先搜索 数组 动态规划 矩阵 👍 609 👎 0
 
-class _542_01 矩阵 {
+class _542_01矩阵 {
     public static void main(String[] args) {
-        Solution solution = new _542_01 矩阵().new Solution();
+        Solution solution = new _542_01矩阵().new Solution();
 
     }
 
