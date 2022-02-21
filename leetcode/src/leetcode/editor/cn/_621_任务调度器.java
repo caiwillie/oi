@@ -62,16 +62,16 @@ class _621_任务调度器 {
         public int leastInterval(char[] tasks, int n) {
             int[] chars = new int[26];
             int max = 0;
-            for (char task : tasks){
-                max = Math.max(++chars[task - 'A'],max);
+            for (char task : tasks) {
+                max = Math.max(++chars[task - 'A'], max);
             }
             int result = (max - 1) * (n + 1);
-            for (int i = 0;i < 26;i++){
-                if(chars[i] == max){
+            for (int i = 0; i < 26; i++) {
+                if (chars[i] == max) {
                     result++;
                 }
             }
-            return Math.max(result,tasks.length);
+            return Math.max(result, tasks.length);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
