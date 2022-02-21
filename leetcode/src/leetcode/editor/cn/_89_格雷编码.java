@@ -47,6 +47,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 数学 回溯 👍 473 👎 0
 
+import java.util.ArrayList;
 import java.util.List;
 
 class _89_格雷编码 {
@@ -58,7 +59,16 @@ class _89_格雷编码 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<Integer> grayCode(int n) {
-            return null;
+            List<Integer> ans = new ArrayList<>();
+            ans.add(0);
+            while (n-- > 0) {
+                int m = ans.size();
+                for (int i = m - 1; i >= 0; i--) {
+                    ans.set(i, ans.get(i) << 1);
+                    ans.add(ans.get(i) + 1);
+                }
+            }
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
