@@ -34,13 +34,60 @@ package leetcode.editor.cn;
 class _498_对角线遍历 {
     public static void main(String[] args) {
         Solution solution = new _498_对角线遍历().new Solution();
-
+        int[][] mat = {{3}, {2}};
+        int[] ans = solution.findDiagonalOrder(mat);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int m = 0;
+        int n = 0;
+
+
         public int[] findDiagonalOrder(int[][] mat) {
-            return null;
+            m = mat.length; // r
+            n = mat[0].length; // c
+
+            int[] ans = new int[m * n];
+
+            int r = 0, c = 0;
+            int i = 0;
+            boolean flag = true;
+            while (i < m * n) {
+                ans[i] = mat[r][c];
+                if (r == 0 && c == 0) {
+                    if(c != n - 1) {
+                        c++;
+                    } else if (r != m - 1) {
+                        r++;
+                    }
+                } else if (r == m - 1 && c == n - 2) {
+                    c++;
+                } else {
+                    if (flag) {
+                        if (c > 0) {
+                            c--;
+                            r++;
+                        } else {
+                            r++;
+                            flag = false;
+                        }
+                    } else {
+                        if (r > 0) {
+                            r--;
+                            c++;
+                        } else {
+                            r++;
+                            flag = true;
+                        }
+                    }
+                }
+                i++;
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
