@@ -43,17 +43,18 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 数组 双指针 二分查找 👍 1583 👎 0
 
-class _287_寻找重复数{
+class _287_寻找重复数 {
     public static void main(String[] args) {
         Solution solution = new _287_寻找重复数().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int findDuplicate(int[] nums) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int findDuplicate(int[] nums) {
+            return 0;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
