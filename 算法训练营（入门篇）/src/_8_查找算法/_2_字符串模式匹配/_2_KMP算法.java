@@ -24,11 +24,13 @@ public class _2_KMP算法 {
         next = new int[tl + 1];
         System.arraycopy($t.toCharArray(), 0, t, 1, tl);
         System.arraycopy($s.toCharArray(), 0, s, 1, sl);
-        getNext($t);
+
+        getNext();
         int i, j = 1;
         // s=abaabaabeca, t=abaabe: i = 1, j = 1
         for (i = 1; i <= sl && j <= tl; i++) {
             while(true) {
+                // j == 0, 说明没匹配到，然后重置，break
                 if(j == 0 || s[i] == t[j]) {
                     j++;
                     break;
@@ -45,7 +47,7 @@ public class _2_KMP算法 {
     }
 
 
-    static void getNext(String $t) {
+    static void getNext() {
 
         int k = next[0] = -1;
         // k 代表 i - 1时的最大长度
@@ -58,6 +60,7 @@ public class _2_KMP算法 {
 
         for (int i = 1; i <= tl; i++) {
             while(true) {
+                // 此时k,刚好是 前 看 i - 1个字符的最大前后缀
                 if(k == -1 || t[k + 1] == t[i]) {
                     next[i] = ++k;
                     break;
