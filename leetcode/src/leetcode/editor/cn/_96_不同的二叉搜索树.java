@@ -36,6 +36,7 @@ class _96_不同的二叉搜索树 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numTrees(int n) {
+
             return 0;
         }
     }
