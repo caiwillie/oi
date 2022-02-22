@@ -57,7 +57,7 @@ class _319_灯泡开关 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int bulbSwitch(int n) {
-            return 0;
+            return (int) Math.sqrt(n);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
