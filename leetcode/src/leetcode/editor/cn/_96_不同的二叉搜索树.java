@@ -30,14 +30,23 @@ package leetcode.editor.cn;
 class _96_不同的二叉搜索树 {
     public static void main(String[] args) {
         Solution solution = new _96_不同的二叉搜索树().new Solution();
-
+        int ans = solution.numTrees(3);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int numTrees(int n) {
-
-            return 0;
+            int[] dp = new int[n + 1];
+            dp[0] = 1;
+            for (int i = 1; i <= n; i++) {
+                int count = 0;
+                for (int j = 1; j <= i ; j++) {
+                    count += dp[j - 1] * dp[i - j];
+                }
+                dp[i] = count;
+            }
+            return dp[n];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
