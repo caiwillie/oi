@@ -32,13 +32,26 @@ package leetcode.editor.cn;
 class _400_第N位数字 {
     public static void main(String[] args) {
         Solution solution = new _400_第N位数字().new Solution();
-
+        int ans = solution.findNthDigit(1000000000);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findNthDigit(int n) {
-            return 0;
+        public int findNthDigit(int $n) {
+            int digital = 1;
+            long start = 1;
+            long n = $n;
+            while (n > 9 * digital * start) {
+                n = n - 9 * digital * start;
+                start = start * 10;
+                digital++;
+            }
+            long i = (long) Math.ceil(1.0 * n / digital);
+            long num = start + i - 1;
+            long k = n - (i - 1) * digital;
+
+            return (int) ((num / (long) Math.pow(10, digital - k)) % 10);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
