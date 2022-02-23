@@ -44,8 +44,6 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 动态规划 回溯 👍 1057 👎 0
 
-import java.util.LinkedList;
-
 class _494_目标和 {
     public static void main(String[] args) {
         Solution solution = new _494_目标和().new Solution();

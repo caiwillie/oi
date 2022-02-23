@@ -35,7 +35,10 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 广度优先搜索 二叉树 👍 585 👎 0
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 class _103_二叉树的锯齿形层序遍历 {
     public static void main(String[] args) {

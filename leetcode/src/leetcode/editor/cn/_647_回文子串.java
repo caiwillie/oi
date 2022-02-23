@@ -35,8 +35,6 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字符串 动态规划 👍 776 👎 0
 
-import java.util.Arrays;
-
 class _647_回文子串 {
     public static void main(String[] args) {
         Solution solution = new _647_回文子串().new Solution();

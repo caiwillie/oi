@@ -40,8 +40,6 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 哈希表 动态规划 👍 546 👎 0
 
-import java.util.Arrays;
-
 class _740_删除并获得点数 {
     public static void main(String[] args) {
         Solution solution = new _740_删除并获得点数().new Solution();

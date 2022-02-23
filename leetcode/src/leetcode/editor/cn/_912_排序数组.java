@@ -31,7 +31,6 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 分治 桶排序 计数排序 基数排序 排序 堆（优先队列） 归并排序 👍 470 👎 0
 
-import java.util.Arrays;
 import java.util.LinkedList;
 
 class _912_排序数组 {

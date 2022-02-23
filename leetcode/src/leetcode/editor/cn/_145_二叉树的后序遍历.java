@@ -40,7 +40,6 @@ package leetcode.editor.cn;
 // Related Topics 栈 树 深度优先搜索 二叉树 👍 755 👎 0
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 

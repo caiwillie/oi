@@ -30,7 +30,10 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字符串 动态规划 回溯 👍 981 👎 0
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 class _131_分割回文串 {
     public static void main(String[] args) {

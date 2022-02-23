@@ -41,7 +41,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 递归 链表 双指针 👍 785 👎 0
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class _143_重排链表 {
     public static void main(String[] args) {

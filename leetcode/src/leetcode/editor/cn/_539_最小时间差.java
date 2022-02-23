@@ -28,7 +28,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 数学 字符串 排序 👍 189 👎 0
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 class _539_最小时间差 {
     public static void main(String[] args) {
