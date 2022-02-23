@@ -39,13 +39,39 @@ package leetcode.editor.cn;
 class _309_最佳买卖股票时机含冷冻期 {
     public static void main(String[] args) {
         Solution solution = new _309_最佳买卖股票时机含冷冻期().new Solution();
-
+        int[] prices = {1, 2, 3, 0, 2};
+        int ans = solution.maxProfit(prices);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int maxProfit(int[] prices) {
-            return 0;
+
+        int length = 0;
+        int[] prices = null;
+
+        public int maxProfit(int[] $prices) {
+            length = $prices.length;
+            prices = new int[length + 1];
+            System.arraycopy($prices, 0, prices, 1, length);
+
+            if(length == 1) return 0;
+
+            int[][] dp = new int[2][length + 1];
+
+            dp[0][1] = 0;
+            dp[1][1] = -prices[1];
+            dp[0][2] = Math.max(dp[0][1], dp[1][1] + prices[2]);
+            dp[1][2] = Math.max(dp[1][1], -prices[2]);
+
+            int i = 3;
+            while (i <= length) {
+                dp[0][i] = Math.max(dp[0][i - 1], dp[1][i - 1] + prices[i]);
+                dp[1][i] = Math.max(dp[1][i - 1], dp[0][i - 2] - prices[i]);
+                i++;
+            }
+
+            return Math.max(dp[0][length], dp[1][length]);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
