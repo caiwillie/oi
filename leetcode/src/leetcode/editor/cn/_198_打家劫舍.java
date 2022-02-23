@@ -37,13 +37,35 @@ package leetcode.editor.cn;
 class _198_打家劫舍 {
     public static void main(String[] args) {
         Solution solution = new _198_打家劫舍().new Solution();
-
+        int[] nums = {2, 1, 1, 2};
+        int ans = solution.rob(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int rob(int[] nums) {
-            return 0;
+
+        int length = 0;
+        int[] nums = null;
+
+        public int rob(int[] $nums) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+
+            int dp[][] = new int[2][length + 1];
+
+            dp[0][1] = 0;
+            dp[1][1] = nums[1];
+
+            int i = 2;
+            while (i <= length) {
+                dp[0][i] = Math.max(dp[1][i - 1], dp[0][i - 1]);
+                dp[1][i] = Math.max(dp[1][i - 2], dp[0][i - 1]) + nums[i];
+                i++;
+            }
+
+            return Math.max(dp[0][length], dp[1][length]);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
