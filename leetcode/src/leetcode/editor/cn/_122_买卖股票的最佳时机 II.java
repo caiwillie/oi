@@ -42,17 +42,18 @@ package leetcode.editor.cn;
 // 
 // Related Topics 贪心 数组 动态规划 👍 1559 👎 0
 
-class _122_买卖股票的最佳时机 II{
+class _122_买卖股票的最佳时机II {
     public static void main(String[] args) {
-        Solution solution = new _122_买卖股票的最佳时机 II().new Solution();
+        Solution solution = new _122_买卖股票的最佳时机II().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int maxProfit(int[] prices) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int maxProfit(int[] prices) {
+            return 0;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
