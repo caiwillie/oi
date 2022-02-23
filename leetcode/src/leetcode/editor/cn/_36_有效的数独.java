@@ -64,16 +64,77 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 哈希表 矩阵 👍 778 👎 0
 
+import java.util.HashMap;
+import java.util.Map;
+
 class _36_有效的数独 {
     public static void main(String[] args) {
         Solution solution = new _36_有效的数独().new Solution();
-
+        char[][] board = {
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        solution.isValidSudoku(board);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 9;
+        Map<Character, Boolean> map = new HashMap<>();
+
         public boolean isValidSudoku(char[][] board) {
-            return false;
+            // 校验每行
+            for (int i = 0; i < length; i++) {
+                map.clear();
+                for (int j = 0; j < length; j++) {
+                    if (board[i][j] == '.') continue;
+                    if (map.containsKey(board[i][j])) {
+                        return false;
+                    } else {
+                        map.put(board[i][j], true);
+                    }
+                }
+            }
+
+            // 校验每列
+            for (int i = 0; i < length; i++) {
+                map.clear();
+                for (int j = 0; j < length; j++) {
+                    if (board[j][i] == '.') continue;
+                    if (map.containsKey(board[j][i])) {
+                        return false;
+                    } else {
+                        map.put(board[j][i], true);
+                    }
+                }
+            }
+
+            // 九宫格
+            for (int i = 0; i < length; i+=3) {
+                for (int j = 0; j < length; j+=3) {
+                    map.clear();
+                    for (int k = i; k < i + 3; k++) {
+                        for (int l = j; l < j + 3; l++) {
+                            if (board[k][l] == '.') continue;
+                            if (map.containsKey(board[k][l])) {
+                                return false;
+                            } else {
+                                map.put(board[k][l], true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
