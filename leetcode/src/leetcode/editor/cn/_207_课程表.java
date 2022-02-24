@@ -40,10 +40,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 深度优先搜索 广度优先搜索 图 拓扑排序 👍 1117 👎 0
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 class _207_课程表 {
     public static void main(String[] args) {
@@ -53,13 +50,12 @@ class _207_课程表 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        List<List<Integer>> edges;
+        Map<Integer, List<Integer>> edges = new HashMap<>();
         int[] indeg;
 
         public boolean canFinish(int numCourses, int[][] prerequisites) {
-            edges = new ArrayList<>();
             for (int i = 0; i < numCourses; ++i) {
-                edges.add(new ArrayList<>());
+                edges.put(i, new ArrayList<>());
             }
 
             indeg = new int[numCourses];

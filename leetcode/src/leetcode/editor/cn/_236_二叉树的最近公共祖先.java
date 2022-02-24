@@ -43,10 +43,27 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 深度优先搜索 二叉树 👍 1535 👎 0
 
+import java.util.LinkedList;
+
 class _236_二叉树的最近公共祖先 {
     public static void main(String[] args) {
         Solution solution = new _236_二叉树的最近公共祖先().new Solution();
+        TreeNode _6 = new TreeNode(6, null, null);
 
+        TreeNode _7 = new TreeNode(7, null, null);
+        TreeNode _4 = new TreeNode(4, null, null);
+        TreeNode _2 = new TreeNode(2, _7, _4);
+        TreeNode _5 = new TreeNode(5, _6, _2);
+
+
+        TreeNode _8 = new TreeNode(8, null, null);
+        TreeNode _0 = new TreeNode(0, null, null);
+        TreeNode _1 = new TreeNode(1, _0, _8);
+
+        TreeNode _3 = new TreeNode(3, _5, _1);
+
+        TreeNode ans = solution.lowestCommonAncestor(_3, _5, _1);
+        return;
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -60,14 +77,57 @@ class _236_二叉树的最近公共祖先 {
      * }
      */
     class Solution {
+
+        int count = 0;
+        TreeNode r = null;
+        LinkedList<TreeNode> ss = new LinkedList<>();
+        LinkedList<TreeNode> cs = new LinkedList<>();
+
         public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            if (root == null || root == p || root == q) return root;
-            TreeNode left = lowestCommonAncestor(root.left, p, q);
-            TreeNode right = lowestCommonAncestor(root.right, p, q);
-            if (left == null) return right;
-            if (right == null) return left;
-            return root;
+            LinkedList<TreeNode> s1 = new LinkedList<>();
+            LinkedList<TreeNode> s2 = new LinkedList<>();
+
+            r = root;
+            push();
+            while (!cs.isEmpty()) {
+                TreeNode c = cs.peek();
+                if (ss.peek() != c) {
+                    ss.push(c);
+                    if (c == p || c == q) {
+                        count++;
+                        if (count == 1) {
+                            s1.addAll(ss);
+                        } else {
+                            s2.addAll(ss);
+                            break;
+                        }
+                    }
+                    r = c.left;
+                    push();
+                    r = c.right;
+                    push();
+                } else {
+                    ss.pop();
+                    cs.pop();
+                }
+            }
+
+            TreeNode ans = null;
+            while (s1.peekLast() == s2.peekLast()) {
+                ans = s1.peekLast();
+                s1.pollLast();
+                s2.pollLast();
+            }
+            return ans;
         }
+
+        void push() {
+            if (r != null) {
+                cs.push(r);
+            }
+        }
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

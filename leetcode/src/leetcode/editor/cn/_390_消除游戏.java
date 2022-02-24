@@ -53,7 +53,24 @@ class _390_消除游戏 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int lastRemaining(int n) {
-            return 0;
+            int num = n;//当前数组元素个数
+            boolean leftToRight = true;//判断此时是从左到右还是从右到左删除
+            int head = 1;//首项
+            int d = 1;//公差
+            while (num != 1) {
+                if (num % 2 == 1) {//num为奇数
+                    head = head + d;//无论从左到右还是从右到左第一位都会被删，首项都会改变
+                } else if (num % 2 == 0) {
+                    if (leftToRight)
+                        head = head + d;//从左到右删首项会改变
+                    else
+                        head = head;//从右到左删首项不变
+                }
+                leftToRight = !leftToRight;//每一轮改变删除方向
+                d *= 2;//公差变大
+                num /= 2;//个数向下取1/2
+            }
+            return head;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
