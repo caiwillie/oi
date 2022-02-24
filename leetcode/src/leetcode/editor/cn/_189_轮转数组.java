@@ -1,5 +1,5 @@
 package leetcode.editor.cn;
- 
+
 //给你一个数组，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。 
 //
 // 
@@ -50,17 +50,31 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 数学 双指针 👍 1308 👎 0
 
-class _189_轮转数组{
+class _189_轮转数组 {
     public static void main(String[] args) {
         Solution solution = new _189_轮转数组().new Solution();
-         
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public void rotate(int[] nums, int k) {
 
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public void rotate(int[] nums, int k) {
+            k %= nums.length;
+            reverse(nums, 0, nums.length - 1);
+            reverse(nums, 0, k - 1);
+            reverse(nums, k, nums.length - 1);
+        }
+
+        void reverse(int[] nums, int start, int end) {
+            while (start < end) {
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
+                start += 1;
+                end -= 1;
+            }
+        }
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
