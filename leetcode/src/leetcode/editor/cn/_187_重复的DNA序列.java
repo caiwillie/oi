@@ -36,7 +36,10 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 哈希表 字符串 滑动窗口 哈希函数 滚动哈希 👍 336 👎 0
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 class _187_重复的DNA序列 {
     public static void main(String[] args) {
@@ -47,7 +50,17 @@ class _187_重复的DNA序列 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public List<String> findRepeatedDnaSequences(String s) {
-            return null;
+            List<String> ans = new ArrayList<String>();
+            Map<String, Integer> cnt = new HashMap<String, Integer>();
+            int n = s.length();
+            for (int i = 0; i <= n - 10; ++i) {
+                String sub = s.substring(i, i + 10);
+                cnt.put(sub, cnt.getOrDefault(sub, 0) + 1);
+                if (cnt.get(sub) == 2) {
+                    ans.add(sub);
+                }
+            }
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
