@@ -44,6 +44,8 @@ package leetcode.editor.cn;
 // 进阶：你能实现时间复杂度为 O(n) ，空间复杂度为 O(1) 的解决方案吗？ 
 // Related Topics 贪心 数组 👍 537 👎 0
 
+import sun.misc.VM;
+
 class _334_递增的三元子序列 {
     public static void main(String[] args) {
         Solution solution = new _334_递增的三元子序列().new Solution();
