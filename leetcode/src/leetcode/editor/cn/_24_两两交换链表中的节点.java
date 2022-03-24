@@ -63,7 +63,7 @@ class _24_两两交换链表中的节点 {
             ListNode cur = g.next;
 
             int i = 1;
-            while(cur != null && i <= k) {
+            while(cur != null) {
                 cur = cur.next;
                 if(i == k) {
                     // 这里cur被重置，在下面的while循环中会恢复
