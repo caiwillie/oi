@@ -51,23 +51,27 @@ class _48_旋转图像 {
 
                 int[] temp = new int[r - l];
 
-                // 将上面一行移出
+                // 将上边移到临时数组，左边界是l
                 for (int i = l; i < r; i++) {
                     temp[i - l] = matrix[t][i];
                 }
 
+                // 将左边移动到上边，左边界是l
                 for (int i = b; i > t; i--) {
                     matrix[t][n - i] = matrix[i][l];
                 }
 
+                // 将下边移动到左边
                 for (int i = r; i > l; i--) {
                     matrix[i][l] = matrix[b][i];
                 }
 
+                // 将右边移到下边
                 for (int i = t; i < b; i++) {
                     matrix[b][n - i] = matrix[i][r];
                 }
 
+                // 将上边移到右边
                 for (int i = l; i < r; i++) {
                     matrix[i][r] = temp[i - l];
                 }
