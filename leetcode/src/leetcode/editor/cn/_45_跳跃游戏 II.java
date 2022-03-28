@@ -59,6 +59,7 @@ class _45_跳跃游戏II {
             while(max < length) {
                 int nextMax = max;
                 while(i <= length && i <= max) {
+                    // i不走回头路，递增枚举直到
                     nextMax = Math.max(i + nums[i], nextMax);
                     i++;
                 }
