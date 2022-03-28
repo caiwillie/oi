@@ -45,41 +45,40 @@ class _54_螺旋矩阵 {
     class Solution {
         public List<Integer> spiralOrder(int[][] matrix) {
             List<Integer> ans = new ArrayList<>();
-            int left = 1, right = matrix[0].length;
-            int top = 1, down = matrix.length;
+            int l = 1, r = matrix[0].length, t = 1, d = matrix.length;
 
             while (true) {
                 // 上边界：从左到右扫描
-                for (int i = left; i <= right; i++) {
-                    ans.add(matrix[top - 1][i - 1]);
+                for (int i = l; i <= r; i++) {
+                    ans.add(matrix[t - 1][i - 1]);
                 }
                 // 上边界向下移动
-                top++;
-                if (top > down) break;
+                t++;
+                if (t > d) break;
 
                 // 右边界：从上往下扫描
-                for (int i = top; i <= down; i++) {
-                    ans.add(matrix[i - 1][right - 1]);
+                for (int i = t; i <= d; i++) {
+                    ans.add(matrix[i - 1][r - 1]);
                 }
                 // 右边界向左移动
-                right--;
-                if (left > right) break;
+                r--;
+                if (l > r) break;
 
                 // 下边界：从右往左扫描
-                for (int i = right; i >= left; i--) {
-                    ans.add(matrix[down - 1][i - 1]);
+                for (int i = r; i >= l; i--) {
+                    ans.add(matrix[d - 1][i - 1]);
                 }
                 // 下边界上移
-                down--;
-                if (top > down) break;
+                d--;
+                if (t > d) break;
 
                 // 左边界：从下往上扫描
-                for (int i = down; i >= top; i--) {
-                    ans.add(matrix[i - 1][left - 1]);
+                for (int i = d; i >= t; i--) {
+                    ans.add(matrix[i - 1][l - 1]);
                 }
                 // 左边界向右移动
-                left++;
-                if (left > right) break;
+                l++;
+                if (l > r) break;
 
             }
 

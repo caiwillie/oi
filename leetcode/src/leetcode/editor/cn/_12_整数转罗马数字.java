@@ -86,6 +86,7 @@ class _12_整数转罗马数字 {
             for (int i = 0; i < values.length; ++i) {
                 int value = values[i];
                 String symbol = symbols[i];
+                // 从最大的开始往下减去
                 while (num >= value) {
                     num -= value;
                     ans.append(symbol);
