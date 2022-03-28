@@ -39,7 +39,7 @@ import java.util.List;
 class _47_全排列II {
     public static void main(String[] args) {
         Solution solution = new _47_全排列II().new Solution();
-        int[] nums = {1, 1, 2};
+        int[] nums = {1, 1, 1, 2};
         List<List<Integer>> ans = solution.permuteUnique(nums);
         return;
     }
@@ -92,7 +92,8 @@ class _47_全排列II {
         void push() {
             int i = 1;
             while (i <= length) {
-                if (!used[i] && !(!used[i - 1] && nums[i] == nums[i - 1])) {
+                if (!used[i] && (used[i - 1] || nums[i] != nums[i - 1])) {
+                    // 未使用的，要么和前面这个不一样（算同一层），要么前面的那个已经使用过（算不同层）
                     cs.push(i);
                 }
                 i++;
@@ -110,5 +111,7 @@ class _47_全排列II {
 
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+
 
 }
