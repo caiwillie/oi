@@ -47,17 +47,18 @@ import java.util.List;
 class _19_删除链表的倒数第N个结点 {
     public static void main(String[] args) {
         Solution solution = new _19_删除链表的倒数第N个结点().new Solution();
-        ListNode l5 = new ListNode(5, null);
-        ListNode l4 = new ListNode(4, l5);
-        ListNode l3 = new ListNode(3, l4);
+/*        ListNode l5 = new ListNode(5, null);
+        ListNode l4 = new ListNode(4, l5);*/
+        ListNode l3 = new ListNode(3, null);
         ListNode l2 = new ListNode(2, l3);
         ListNode l1 = new ListNode(1, l2);
 
-        solution.removeNthFromEnd(l1, 2);
+        solution.removeNthFromEnd(l1, 3);
 
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+
     /**
      * Definition for singly-linked list.
      * public class ListNode {
@@ -71,16 +72,20 @@ class _19_删除链表的倒数第N个结点 {
     class Solution {
         public ListNode removeNthFromEnd(ListNode head, int n) {
             ListNode dummy = new ListNode(-1, head);
-            ListNode cur = dummy;
-            List<ListNode> list = new ArrayList<>();
-            while(cur != null) {
-                // 头节点是dummy
-                list.add(cur);
-                cur = cur.next;
+            ListNode slow = dummy, fast = head, pre = null;
+            int dif = 1;
+            while (fast != null) {
+                fast = fast.next;
+                if (dif < n) {
+                    dif++;
+                } else {
+                    pre = slow;
+                    slow = slow.next;
+                }
             }
-            ListNode pre = list.get(list.size() - n - 1);
-            ListNode remove = list.get(list.size() - n);
-            pre.next = remove.next;
+
+            if (pre != null) pre.next = slow.next;
+
             return dummy.next;
         }
     }
