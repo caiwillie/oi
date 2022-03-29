@@ -74,19 +74,27 @@ class _145_二叉树的后序遍历 {
 
         public List<Integer> postorderTraversal(TreeNode root) {
             List<Integer> res = new ArrayList<>();
-            LinkedList<TreeNode> stack = new LinkedList<>();
-            if(root != null) stack.push(root);
+            LinkedList<TreeNode> cs = new LinkedList<>();
+            LinkedList<TreeNode> ss = new LinkedList<>();
+            if(root != null) cs.push(root);
 
-            while (!stack.isEmpty()) {
-                TreeNode top = stack.peek();
-                if (top != null) {
-                    stack.push(null); // 推入null作为标记
-                    if(top.right != null) stack.push(top.right);
-                    if(top.left != null) stack.push(top.left);
+            while (!cs.isEmpty()) {
+                TreeNode c = cs.peek();
+                if (c != ss.peek()) {
+                    ss.push(c);
+
+                    // 后序
+                    cs.pop();
+                    cs.push(c);
+                    // push
+                    if(c.right != null) cs.push(c.right);
+                    if(c.left != null) cs.push(c.left);
                 } else {
-                    stack.pop(); // 这个弹出的是null
-                    TreeNode node = stack.pop();
-                    res.add(node.val);
+                    // add
+                    res.add(c.val);
+
+                    cs.pop();
+                    ss.pop();
                 }
             }
             return res;
