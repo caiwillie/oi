@@ -45,41 +45,55 @@ package leetcode.editor.cn;
 // 
 // Related Topics 双指针 字符串 动态规划 👍 267 👎 0
 
-import java.util.LinkedList;
+import java.util.*;
 
 class _838_推多米诺 {
     public static void main(String[] args) {
         Solution solution = new _838_推多米诺().new Solution();
-
+        String ans = solution.pushDominoes(".L.R...LR..L..");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String pushDominoes(String dominoes) {
-            char[] chars = dominoes.toCharArray();
-            int n = chars.length;
-            int[] g = new int[n];
-            LinkedList<int[]> cs = new LinkedList<>();
+            int n = dominoes.length();
+            Deque<Integer> queue = new ArrayDeque<>();
+            int[] time = new int[n];
+            Arrays.fill(time, -1);
+            List<Character>[] force = new List[n];
             for (int i = 0; i < n; i++) {
-                if (chars[i] == '.') continue;
-                int dire = chars[i] == 'L' ? -1 : 1;
-                cs.add(new int[]{i, 1, dire});
-                g[i] = 1;
+                force[i] = new ArrayList<>();
             }
-            while (!cs.isEmpty()) {
-                int[] info = cs.pop();
-                int loc = info[0], time = info[1], dire = info[2];
-                int ne = loc + dire;
-                if (chars[loc] == '.' || (ne < 0 || ne >= n)) continue;
-                if (g[ne] == 0) { // 首次受力
-                    cs.addLast(new int[]{ne, time + 1, dire});
-                    g[ne] = time + 1;
-                    chars[ne] = dire == -1 ? 'L' : 'R';
-                } else if (g[ne] == time + 1) { // 多次受力
-                    chars[ne] = '.';
+            for (int i = 0; i < n; i++) {
+                char f = dominoes.charAt(i);
+                if (f != '.') {
+                    queue.offer(i);
+                    time[i] = 0;
+                    force[i].add(f);
                 }
             }
-            return String.valueOf(chars);
+            char[] res = new char[n];
+            Arrays.fill(res, '.');
+            while (!queue.isEmpty()) {
+                int i = queue.poll();
+                if (force[i].size() == 1) {
+                    char f = force[i].get(0);
+                    res[i] = f;
+                    int ni = f == 'L' ? i - 1 : i + 1;
+                    if (ni >= 0 && ni < n) {
+                        int t = time[i];
+                        if (time[ni] == -1) {
+                            queue.offer(ni);
+                            time[ni] = t + 1;
+                            force[ni].add(f);
+                        } else if (time[ni] == t + 1) {
+                            force[ni].add(f);
+                        }
+                    }
+                }
+            }
+            return new String(res);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
