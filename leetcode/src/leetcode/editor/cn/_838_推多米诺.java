@@ -45,6 +45,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 双指针 字符串 动态规划 👍 267 👎 0
 
+import java.util.LinkedList;
+
 class _838_推多米诺 {
     public static void main(String[] args) {
         Solution solution = new _838_推多米诺().new Solution();
@@ -54,7 +56,30 @@ class _838_推多米诺 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String pushDominoes(String dominoes) {
-            return null;
+            char[] chars = dominoes.toCharArray();
+            int n = chars.length;
+            int[] g = new int[n];
+            LinkedList<int[]> cs = new LinkedList<>();
+            for (int i = 0; i < n; i++) {
+                if (chars[i] == '.') continue;
+                int dire = chars[i] == 'L' ? -1 : 1;
+                cs.add(new int[]{i, 1, dire});
+                g[i] = 1;
+            }
+            while (!cs.isEmpty()) {
+                int[] info = cs.pop();
+                int loc = info[0], time = info[1], dire = info[2];
+                int ne = loc + dire;
+                if (chars[loc] == '.' || (ne < 0 || ne >= n)) continue;
+                if (g[ne] == 0) { // 首次受力
+                    cs.addLast(new int[]{ne, time + 1, dire});
+                    g[ne] = time + 1;
+                    chars[ne] = dire == -1 ? 'L' : 'R';
+                } else if (g[ne] == time + 1) { // 多次受力
+                    chars[ne] = '.';
+                }
+            }
+            return String.valueOf(chars);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
