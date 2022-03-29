@@ -37,6 +37,7 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 深度优先搜索 广度优先搜索 二叉树 👍 651 👎 0
 
+import java.util.LinkedList;
 import java.util.List;
 
 class _199_二叉树的右视图 {
@@ -62,8 +63,24 @@ class _199_二叉树的右视图 {
      * }
      */
     class Solution {
+
+
+        LinkedList<TreeNode> cs = new LinkedList<>();
+
         public List<Integer> rightSideView(TreeNode root) {
+
+
+
+
             return null;
+        }
+
+        private void push() {
+
+        }
+
+        private void add() {
+
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

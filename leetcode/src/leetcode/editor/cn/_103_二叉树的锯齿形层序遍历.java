@@ -69,26 +69,24 @@ class _103_二叉树的锯齿形层序遍历 {
         public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
             List<List<Integer>> ans = new ArrayList<>();
 
-            if(root == null) return ans;
-
             // flag == true 表示从左往右，flag == false 表示从右往左
             boolean flag = true;
 
             // 初始化
-            q.push(root);
+            if (root != null) q.push(root);
 
-            while(!q.isEmpty()) {
+            while (!q.isEmpty()) {
                 List<Integer> l = new ArrayList<>();
                 int length = q.size();
 
                 for (int i = 0; i < length; i++) {
                     TreeNode n = q.poll();
-                    if(n.left != null) q.offer(n.left);
-                    if(n.right != null) q.offer(n.right);
+                    if (n.left != null) q.offer(n.left);
+                    if (n.right != null) q.offer(n.right);
                     l.add(n.val);
                 }
 
-                if(!flag) {
+                if (!flag) {
                     Collections.reverse(l);
                 }
 
@@ -97,10 +95,8 @@ class _103_二叉树的锯齿形层序遍历 {
                 ans.add(l);
             }
 
-
             return ans;
         }
-
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
