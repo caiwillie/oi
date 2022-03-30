@@ -35,16 +35,59 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 数组 单调栈 👍 586 👎 0
 
+import java.util.Arrays;
+import java.util.LinkedList;
+
 class _503_下一个更大元素II {
     public static void main(String[] args) {
         Solution solution = new _503_下一个更大元素II().new Solution();
-
+        int[] nums = {1, 1, 1, 1, 1};
+        int[] ans = solution.nextGreaterElements(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int[] nextGreaterElements(int[] nums) {
-            return null;
+
+        int peekIndex = 0;
+        int index = 1;
+        int length = 0;
+        int[] nums = null;
+        LinkedList<Integer> s = new LinkedList<>();
+        int[] ans = null;
+
+        public int[] nextGreaterElements(int[] $nums) {
+            length = $nums.length;
+            nums = new int[length + 1];
+            ans = new int[length + 1];
+            System.arraycopy($nums, 0, nums, 1, length);
+            // 确保比所有的值大
+            nums[0] = Integer.MAX_VALUE;
+
+            while (true) {
+                while (nums[index] > nums[peekIndex = s.peek() == null ? 0 : s.peek()]) {
+                    // 如果大于
+                    Integer temp = s.pop();
+                    ans[temp] = nums[index];
+                }
+
+                int last = s.peekLast() == null ? 0 : s.peekLast();
+                if(index == last) {
+                    while(!s.isEmpty()) {
+                        ans[s.pop()] = -1;
+                    }
+                    break;
+                } else {
+                    s.push(index);
+                    if (index == length) {
+                        index = 1;
+                    } else {
+                        index++;
+                    }
+                }
+            }
+
+            return Arrays.copyOfRange(ans, 1, ans.length);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
