@@ -40,47 +40,99 @@ package leetcode.editor.cn;
 // 
 // Related Topics 深度优先搜索 广度优先搜索 并查集 数组 矩阵 👍 686 👎 0
 
+import java.util.LinkedList;
+
 class _695_岛屿的最大面积 {
     public static void main(String[] args) {
         Solution solution = new _695_岛屿的最大面积().new Solution();
-
+        int[][] grid = {
+                {0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0},
+                {0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
+        };
+        int ans = solution.maxAreaOfIsland(grid);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        int n, m;
+        int rl = 0;
+        int cl = 0;
+        int[][] grid = null;
 
-        public int maxAreaOfIsland(int[][] grid) {
-            n = grid.length;
-            m = grid[0].length;
-            int res = 0;
-            for (int i = 0; i < grid.length; i++) {
-                for (int j = 0; j < grid[i].length; j++) {
-                    int nums = dfs(grid, i, j);
-                    res = Math.max(res, nums);
+        int r = -1, c = -1, ans = 0, count = 0;
+        LinkedList<int[]> cs = new LinkedList<>();
+        LinkedList<int[]> ss = new LinkedList<>();
+        boolean[][] used = null;
+
+        public int maxAreaOfIsland(int[][] $grid) {
+            rl = $grid.length;
+            cl = $grid[0].length;
+            grid = $grid;
+            used = new boolean[rl][cl];
+
+
+            push();
+            while (!cs.isEmpty()) {
+                int[] ca = cs.peek();
+                if (ss.peek() != ca) {
+                    r = ca[0];
+                    c = ca[1];
+                    if (used[r][c]) {
+                        // 源头可能重复使用过了
+                        cs.pop();
+                    } else {
+                        used[r][c] = true;
+                        ss.push(ca);
+                        count++;
+                        push();
+                    }
+                } else {
+                    ss.pop();
+                    cs.pop();
+                    if(ss.isEmpty()) {
+                        // 只有ss.isEmpty() 代表一次遍历完成
+                        ans = Math.max(count, ans);
+                        count = 0;
+                    }
                 }
             }
 
-            return res;
+            return ans;
         }
 
-        int dfs(int[][] grid, int i, int j) {
-            if (i < 0 || j < 0 || i >= n || j >= m) {
-                return 0;
-            }
-
-            if (grid[i][j] != 1) {
-                return 0;
+        void push() {
+            if (r == -1 && c == -1) {
+                for (int i = 0; i < rl; i++) {
+                    for (int j = 0; j < cl; j++) {
+                        if (grid[i][j] == 1) {
+                            // 多个源头
+                            cs.push(new int[]{i, j});
+                        }
+                    }
+                }
             } else {
-                grid[i][j] = 2;
-                int r1 = dfs(grid, i + 1, j);
-                int r2 = dfs(grid, i, j + 1);
-                int r3 = dfs(grid, i - 1, j);
-                int r4 = dfs(grid, i, j - 1);
-                return 1 + r1 + r2 + r3 + r4;
+                for (int i = c - 1; i <= c + 1; i++) {
+                    if (i >= 0 && i <= cl - 1 && !used[r][i] && grid[r][i] == 1) {
+                        cs.push(new int[]{r, i});
+                    }
+                }
+
+                for (int i = r - 1; i <= r + 1; i++) {
+                    if (i >= 0 && i <= rl - 1 && !used[i][c] && grid[i][c] == 1) {
+                        cs.push(new int[]{i, c});
+                    }
+                }
             }
         }
+
+
     }
     //leetcode submit region end(Prohibit modification and deletion)
 

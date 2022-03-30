@@ -60,7 +60,9 @@ import java.util.LinkedList;
 class _1034_边界着色 {
     public static void main(String[] args) {
         Solution solution = new _1034_边界着色().new Solution();
-
+        int[][] grid = {{1, 2, 2}, {2, 3, 2}};
+        int[][] ans = solution.colorBorder(grid, 0, 1, 3);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -85,14 +87,62 @@ class _1034_边界着色 {
             cs.push(new int[]{row, col});
 
 
-            while(!cs.isEmpty()) {
-
+            while (!cs.isEmpty()) {
+                int[] ca = cs.peek();
+                if (ca != ss.peek()) {
+                    r = ca[0];
+                    c = ca[1];
+                    if (used[r][c] != 0) {
+                        // 源头可能重复使用过了
+                        cs.pop();
+                    } else {
+                        // 表示是连通分量
+                        used[r][c] = 1;
+                        ss.push(ca);
+                        push();
+                    }
+                } else {
+                    cs.pop();
+                    ss.pop();
+                }
             }
-            return null;
+
+            for (int i = 0; i < rl; i++) {
+                for (int j = 0; j < cl; j++) {
+                    if (used[i][j] == 2) grid[i][j] = color;
+                }
+            }
+
+            return grid;
         }
 
         void push() {
+            boolean board = false;
 
+            for (int i = c - 1; i <= c + 1; i++) {
+                if (!board && (i < 0 || i > cl - 1 || grid[r][i] != num)) {
+                    board = true;
+                }
+
+                if (i >= 0 && i <= cl - 1 && used[r][i] == 0 && grid[r][i] == num) {
+                    cs.push(new int[]{r, i});
+                }
+            }
+
+            for (int i = r - 1; i <= r + 1; i++) {
+                if (!board && (i < 0 || i > rl - 1 || grid[i][c] != num)) {
+                    board = true;
+                }
+
+                if (i >= 0 && i <= rl - 1 && used[i][c] == 0 && grid[i][c] == num) {
+                    cs.push(new int[]{i, c});
+                }
+            }
+
+            if (board) {
+                // 表示是连通分量边界
+                used[r][c] = 2;
+            }
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

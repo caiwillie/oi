@@ -65,7 +65,7 @@ class _200_岛屿数量 {
         int cl = 0;
         char[][] grid = null;
 
-        int r = -1, c = -1, ans = 0, count = 0;
+        int r = -1, c = -1, ans = 0;
         LinkedList<int[]> cs = new LinkedList<>();
         LinkedList<int[]> ss = new LinkedList<>();
         boolean[][] used = null;
@@ -84,11 +84,11 @@ class _200_岛屿数量 {
                     r = ca[0];
                     c = ca[1];
                     if (used[r][c]) {
-                        // 使用过了
+                        // 源头可能重复使用过了
                         cs.pop();
                     } else {
-                        ss.push(ca);
                         used[r][c] = true;
+                        ss.push(ca);
                         push();
                     }
                 } else {
@@ -108,6 +108,7 @@ class _200_岛屿数量 {
                 for (int i = 0; i < rl; i++) {
                     for (int j = 0; j < cl; j++) {
                         if (grid[i][j] == '1') {
+                            // 多个源头
                             cs.push(new int[]{i, j});
                         }
                     }
@@ -125,7 +126,6 @@ class _200_岛屿数量 {
                     }
                 }
             }
-
         }
 
     }
