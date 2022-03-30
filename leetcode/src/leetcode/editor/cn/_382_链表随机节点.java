@@ -51,7 +51,7 @@ package leetcode.editor.cn;
 
 class _382_链表随机节点 {
     public static void main(String[] args) {
-        Solution solution = new _382_链表随机节点().new Solution();
+        Solution solution = new _382_链表随机节点().new Solution(null);
 
     }
 
