@@ -68,15 +68,31 @@ class _1034_边界着色 {
 
         int rl = 0;
         int cl = 0;
-        char[][] grid = null;
+        int[][] grid = null;
 
-        int r = -1, c = -1, ans = 0, count = 0;
+        int r = -1, c = -1, ans = 0, count = 0, num = 0;
         LinkedList<int[]> cs = new LinkedList<>();
         LinkedList<int[]> ss = new LinkedList<>();
-        boolean[][] used = null;
+        int[][] used = null;
 
-        public int[][] colorBorder(int[][] grid, int row, int col, int color) {
+        public int[][] colorBorder(int[][] $grid, int row, int col, int color) {
+            rl = $grid.length;
+            cl = $grid[0].length;
+            grid = $grid;
+            used = new int[rl][cl];
+            num = grid[row][col];
+
+            cs.push(new int[]{row, col});
+
+
+            while(!cs.isEmpty()) {
+
+            }
             return null;
+        }
+
+        void push() {
+
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
