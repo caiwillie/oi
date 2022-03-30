@@ -35,17 +35,18 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 数组 单调栈 👍 586 👎 0
 
-class _503_下一个更大元素II{
+class _503_下一个更大元素II {
     public static void main(String[] args) {
         Solution solution = new _503_下一个更大元素II().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int[] nextGreaterElements(int[] nums) {
-        return null;
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int[] nextGreaterElements(int[] nums) {
+            return null;
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
