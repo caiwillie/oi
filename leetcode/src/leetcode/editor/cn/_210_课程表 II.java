@@ -47,16 +47,66 @@ package leetcode.editor.cn;
 // 
 // Related Topics 深度优先搜索 广度优先搜索 图 拓扑排序 👍 594 👎 0
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 class _210_课程表II {
     public static void main(String[] args) {
         Solution solution = new _210_课程表II().new Solution();
-
+        /*
+        * 2
+[[1,0]]
+        * */
+        int[][] prerequisites = {{1, 0}};
+        int[] ans = solution.findOrder(2, prerequisites);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        List<Integer>[] adj;
+        int[] inDegree;
+
         public int[] findOrder(int numCourses, int[][] prerequisites) {
-            return null;
+            adj = new List[numCourses];
+            for (int i = 0; i < adj.length; i++) {
+                adj[i] = new ArrayList<>();
+            }
+
+            inDegree = new int[numCourses];
+
+            for (int[] info : prerequisites) {
+                // 邻接矩阵
+                adj[info[1]].add(info[0]);
+                // 说明有依赖关系
+                inDegree[info[0]]++;
+            }
+
+            Queue<Integer> queue = new LinkedList<>();
+            for (int i = 0; i < numCourses; ++i) {
+                if (inDegree[i] == 0) {
+                    queue.offer(i);
+                }
+            }
+
+            int[] ans = new int[numCourses];
+            int visited = 0;
+            while (!queue.isEmpty()) {
+                visited++;
+                int u = queue.poll();
+                ans[visited - 1] = u;
+                for (int v : adj[u]) {
+                    inDegree[v]--;
+                    if (inDegree[v] == 0) {
+                        queue.offer(v);
+                    }
+                }
+            }
+
+            return visited == numCourses ? ans : new int[]{};
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

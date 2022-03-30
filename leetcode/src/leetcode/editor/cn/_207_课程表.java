@@ -55,6 +55,10 @@ class _207_课程表 {
 
         public boolean canFinish(int numCourses, int[][] prerequisites) {
             adj = new List[numCourses];
+            for (int i = 0; i < adj.length; i++) {
+                adj[i] = new ArrayList<>();
+            }
+
             inDegree = new int[numCourses];
 
             for (int[] info : prerequisites) {
