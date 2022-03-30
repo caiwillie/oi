@@ -55,6 +55,8 @@ package leetcode.editor.cn;
 // 
 // Related Topics 深度优先搜索 广度优先搜索 数组 矩阵 👍 145 👎 0
 
+import java.util.LinkedList;
+
 class _1034_边界着色 {
     public static void main(String[] args) {
         Solution solution = new _1034_边界着色().new Solution();
@@ -63,6 +65,16 @@ class _1034_边界着色 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int rl = 0;
+        int cl = 0;
+        char[][] grid = null;
+
+        int r = -1, c = -1, ans = 0, count = 0;
+        LinkedList<int[]> cs = new LinkedList<>();
+        LinkedList<int[]> ss = new LinkedList<>();
+        boolean[][] used = null;
+
         public int[][] colorBorder(int[][] grid, int row, int col, int color) {
             return null;
         }
