@@ -49,38 +49,40 @@ package leetcode.editor.cn;
 // 
 // Related Topics 水塘抽样 链表 数学 随机化 👍 269 👎 0
 
-class _382_链表随机节点{
+class _382_链表随机节点 {
     public static void main(String[] args) {
         Solution solution = new _382_链表随机节点().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
 
-    public Solution(ListNode head) {
+    //leetcode submit region begin(Prohibit modification and deletion)
 
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+
+        public Solution(ListNode head) {
+
+        }
+
+        public int getRandom() {
+            return 0;
+        }
     }
-    
-    public int getRandom() {
 
-    }
-}
-
-/**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(head);
- * int param_1 = obj.getRandom();
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    /**
+     * Your Solution object will be instantiated and called as such:
+     * Solution obj = new Solution(head);
+     * int param_1 = obj.getRandom();
+     */
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
