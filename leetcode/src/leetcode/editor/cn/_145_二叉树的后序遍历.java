@@ -71,11 +71,11 @@ class _145_二叉树的后序遍历 {
      */
     class Solution {
 
+        List<Integer> ans = new ArrayList<>();
+        LinkedList<TreeNode> cs = new LinkedList<>();
+        LinkedList<TreeNode> ss = new LinkedList<>();
 
         public List<Integer> postorderTraversal(TreeNode root) {
-            List<Integer> res = new ArrayList<>();
-            LinkedList<TreeNode> cs = new LinkedList<>();
-            LinkedList<TreeNode> ss = new LinkedList<>();
             if(root != null) cs.push(root);
 
             while (!cs.isEmpty()) {
@@ -91,13 +91,13 @@ class _145_二叉树的后序遍历 {
                     if(c.left != null) cs.push(c.left);
                 } else {
                     // add
-                    res.add(c.val);
+                    ans.add(c.val);
 
                     cs.pop();
                     ss.pop();
                 }
             }
-            return res;
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

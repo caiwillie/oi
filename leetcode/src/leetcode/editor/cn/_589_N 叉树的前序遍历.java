@@ -39,6 +39,8 @@ package leetcode.editor.cn;
 // 进阶：递归法很简单，你可以使用迭代法完成此题吗? 
 // Related Topics 栈 树 深度优先搜索 👍 262 👎 0
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 class _589_N叉树的前序遍历 {
@@ -66,10 +68,54 @@ class _589_N叉树的前序遍历 {
     };
     */
     class Solution {
+
+        List<Integer> ans = new ArrayList<>();
+        LinkedList<Node> cs = new LinkedList<>();
+        LinkedList<Node> ss = new LinkedList<>();
+
         public List<Integer> preorder(Node root) {
-            return null;
+
+            if(root != null) cs.push(root);
+
+            while(!cs.isEmpty()) {
+                Node c = cs.peek();
+                if(c != ss.peek()) {
+                    ss.push(c);
+
+                    cs.pop();
+
+                    for (int i = c.children.size() - 1; i >= 0; i--) {
+                        cs.push(c.children.get(i));
+                    }
+
+                    cs.push(c);
+                } else {
+                    ans.add(c.val);
+                    cs.pop();
+                    ss.pop();
+                }
+            }
+
+            return ans;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+
+    class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {}
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    }
 
 }

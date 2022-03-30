@@ -33,6 +33,9 @@ package leetcode.editor.cn;
 // 
 // Related Topics 树 二叉搜索树 链表 分治 二叉树 👍 684 👎 0
 
+import java.util.ArrayList;
+import java.util.List;
+
 class _109_有序链表转换二叉搜索树 {
     public static void main(String[] args) {
         Solution solution = new _109_有序链表转换二叉搜索树().new Solution();
@@ -65,8 +68,24 @@ class _109_有序链表转换二叉搜索树 {
      * }
      */
     class Solution {
+        List <Integer> list = new ArrayList<>();
+
         public TreeNode sortedListToBST(ListNode head) {
-            return null;
+
+            while (head != null) { // 将链表节点的值逐个推入数组arr
+                list.add(head.val);
+                head = head.next;
+            }
+            // 根据索引start到end的子数组构建子树
+            return buildBST(0, list.size() - 1);
+        }
+
+        private TreeNode buildBST(int start, int end) {
+            if(start > end) return null;
+            int mid = (start + end) / 2;
+            TreeNode left = buildBST(start, mid - 1);
+            TreeNode right = buildBST(mid + 1, end);
+            return new TreeNode(list.get(mid), left, right);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)

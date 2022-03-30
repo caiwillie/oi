@@ -69,10 +69,12 @@ class _94_二叉树的中序遍历{
  * }
  */
 class Solution {
+
+    List<Integer> ans = new ArrayList<>();
+    LinkedList<TreeNode> cs = new LinkedList<>();
+    LinkedList<TreeNode> ss = new LinkedList<>();
+
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        LinkedList<TreeNode> cs = new LinkedList<>();
-        LinkedList<TreeNode> ss = new LinkedList<>();
         if(root != null) cs.push(root);
 
         while (!cs.isEmpty()) {
@@ -87,13 +89,13 @@ class Solution {
                 if(c.left != null) cs.push(c.left);
             } else {
                 // add
-                res.add(c.val);
+                ans.add(c.val);
 
                 cs.pop();
                 ss.pop();
             }
         }
-        return res;
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
