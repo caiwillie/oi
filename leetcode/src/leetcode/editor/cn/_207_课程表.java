@@ -50,35 +50,34 @@ class _207_课程表 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        Map<Integer, List<Integer>> edges = new HashMap<>();
-        int[] indeg;
+        List<Integer>[] adj;
+        int[] inDegree;
 
         public boolean canFinish(int numCourses, int[][] prerequisites) {
-            for (int i = 0; i < numCourses; ++i) {
-                edges.put(i, new ArrayList<>());
-            }
+            adj = new List[numCourses];
+            inDegree = new int[numCourses];
 
-            indeg = new int[numCourses];
             for (int[] info : prerequisites) {
                 // 邻接矩阵
-                edges.get(info[1]).add(info[0]);
-                ++indeg[info[0]];
+                adj[info[1]].add(info[0]);
+                // 说明有依赖关系
+                inDegree[info[0]]++;
             }
 
             Queue<Integer> queue = new LinkedList<>();
             for (int i = 0; i < numCourses; ++i) {
-                if (indeg[i] == 0) {
+                if (inDegree[i] == 0) {
                     queue.offer(i);
                 }
             }
 
             int visited = 0;
             while (!queue.isEmpty()) {
-                ++visited;
+                visited++;
                 int u = queue.poll();
-                for (int v : edges.get(u)) {
-                    --indeg[v];
-                    if (indeg[v] == 0) {
+                for (int v : adj[u]) {
+                    inDegree[v]--;
+                    if (inDegree[v] == 0) {
                         queue.offer(v);
                     }
                 }
