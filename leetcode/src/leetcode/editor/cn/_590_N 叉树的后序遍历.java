@@ -44,61 +44,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-class _590_N叉树的后序遍历{
+class _590_N叉树的后序遍历 {
     public static void main(String[] args) {
         Solution solution = new _590_N叉树的后序遍历().new Solution();
 
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public List<Node> children;
-
-    public Node() {}
-
-    public Node(int _val) {
-        val = _val;
-    }
-
-    public Node(int _val, List<Node> _children) {
-        val = _val;
-        children = _children;
-    }
-};
-*/
-
-class Solution {
-
-    List<Integer> ans = new ArrayList<>();
-    LinkedList<Node> cs = new LinkedList<>();
-    LinkedList<Node> ss = new LinkedList<>();
-
-    public List<Integer> postorder(Node root) {
-        if(root != null) cs.push(root);
-
-        while(!cs.isEmpty()) {
-            Node c = cs.peek();
-            if(c != ss.peek()) {
-                ss.push(c);
-
-                cs.pop();
-                cs.push(c);
-
-                for (int i = c.children.size() - 1; i >= 0; i--) {
-                    cs.push(c.children.get(i));
-                }
-            } else {
-                ans.add(c.val);
-                cs.pop();
-                ss.pop();
-            }
-        }
-
-        return ans;
-    }
-
+    //leetcode submit region begin(Prohibit modification and deletion)
+    /*
+    // Definition for a Node.
     class Node {
         public int val;
         public List<Node> children;
@@ -113,9 +66,59 @@ class Solution {
             val = _val;
             children = _children;
         }
+    };
+    */
+
+    class Solution {
+
+        List<Integer> ans = new ArrayList<>();
+        LinkedList<Node> cs = new LinkedList<>();
+        LinkedList<Node> ss = new LinkedList<>();
+
+        public List<Integer> postorder(Node root) {
+            if (root != null) cs.push(root);
+
+            while (!cs.isEmpty()) {
+                Node c = cs.peek();
+                if (c != ss.peek()) {
+                    ss.push(c);
+
+                    cs.pop();
+                    cs.push(c);
+
+                    for (int i = c.children.size() - 1; i >= 0; i--) {
+                        cs.push(c.children.get(i));
+                    }
+                } else {
+                    ans.add(c.val);
+                    cs.pop();
+                    ss.pop();
+                }
+            }
+
+            return ans;
+        }
+
+    }
+    //leetcode submit region end(Prohibit modification and deletion)
+
+    class Node {
+        public int val;
+        public List<Node> children;
+
+        public Node() {
+        }
+
+        public Node(int _val) {
+            val = _val;
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
     }
 
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    ;
 
 }
