@@ -62,13 +62,43 @@ package leetcode.editor.cn;
 class _91_解码方法 {
     public static void main(String[] args) {
         Solution solution = new _91_解码方法().new Solution();
-
+        int ans = solution.numDecodings("11106");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        int length = 0;
+        int[] dp = null;
+        char[] chars = null;
+
         public int numDecodings(String s) {
-            return 0;
+            length = s.length();
+            dp = new int[length + 1];
+            chars = new char[length + 1];
+            System.arraycopy(s.toCharArray(), 0, chars, 1, length);
+
+            dp[0] = 1;
+
+            for (int i = 1; i <= length; i++) {
+                int temp = 0;
+                for (int dif = 1; dif <= 2 && i - dif >= 0; dif++) {
+                    if(dif == 1) {
+                        if(chars[i] != '0') {
+                            // 不是0，就可以单独算
+                            temp += dp[i - 1];
+                        }
+                    } else {
+                        if(chars[i - 1] == '1' || (chars[i - 1] == '2' && chars[i] <= '6')) {
+                            temp += dp[i - 2];
+                        }
+                    }
+                }
+                dp[i] = temp;
+            }
+
+            return dp[length];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
