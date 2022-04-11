@@ -43,14 +43,20 @@ class _400_第N位数字 {
             long start = 1;
             long n = $n;
             while (n > 9 * digital * start) {
+                // 将能减去的位数全部减去
                 n = n - 9 * digital * start;
                 start = start * 10;
                 digital++;
             }
+
+            // 计算出最后一个数字相对start的偏移量
             long i = (long) Math.ceil(1.0 * n / digital);
             long num = start + i - 1;
+
+            // 计算出是在数字内的第几位
             long k = n - (i - 1) * digital;
 
+            // 除以10的digital - k次方后，取余
             return (int) ((num / (long) Math.pow(10, digital - k)) % 10);
         }
     }
