@@ -62,9 +62,10 @@ class _438_找到字符串中所有字母异位词 {
             int diff = 0;
 
             for (int i = 0; i < n; i++) {
-                cnt[s.charAt(i) - 'a']++;
                 cnt[p.charAt(i) - 'a']--;
+                cnt[s.charAt(i) - 'a']++;
             }
+
             for (int i = 0; i < 26; i++) {
                 if (cnt[i] != 0) {
                     // 统计差异数
@@ -75,14 +76,16 @@ class _438_找到字符串中所有字母异位词 {
                 ans.add(0);
             }
             for (int i = 0; i < m - n; i++) {
-                if (--cnt[s.charAt(i) - 'a'] == 0) {
+                cnt[s.charAt(i) - 'a']--;
+                if (cnt[s.charAt(i) - 'a'] == 0) {
                     // 移除窗口左边的字符后，这个字符的词频数变成了0，diff减1
                     diff--;
                 } else if (cnt[s.charAt(i) - 'a'] == -1) {
                     // 这个字符的词频数变成-1，说明原来是0，diff加1
                     diff++;
                 }
-                if (++cnt[s.charAt(i + n) - 'a'] == 1) {
+                cnt[s.charAt(i + n) - 'a']++;
+                if (cnt[s.charAt(i + n) - 'a'] == 1) {
                     // 增加窗口右边的字符后，这个字符的词频数变成了1，diff加1
                     diff++;
                 } else if (cnt[s.charAt(i + n) - 'a'] == 0) {

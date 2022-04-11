@@ -43,29 +43,54 @@ package leetcode.editor.cn;
 // 
 // Related Topics 位运算 数组 双指针 二分查找 👍 1583 👎 0
 
+import java.util.ArrayList;
+import java.util.List;
+
 class _287_寻找重复数 {
     public static void main(String[] args) {
         Solution solution = new _287_寻找重复数().new Solution();
-
+        int[] nums = {2, 2, 2, 2, 2};
+        int ans = solution.findDuplicate(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findDuplicate(int[] nums) {
+
+        // 利用循环链表
+        public int findDuplicate2(int[] nums) {
             int slow = 0;
             int fast = 0;
             slow = nums[slow];
             fast = nums[nums[fast]];
-            while(slow != fast){
+            while (slow != fast) {
                 slow = nums[slow];
                 fast = nums[nums[fast]];
             }
             int pre = 0;
-            while(pre != slow){
+            while (pre != slow) {
                 pre = nums[pre];
                 slow = nums[slow];
             }
             return pre;
+        }
+
+        // 利用取余
+        public int findDuplicate(int[] nums) {
+            int n = nums.length;
+            List<Integer> ans = new ArrayList<>();
+
+            for (int i = 0; i < n; i++) {
+                int j = nums[i];
+                nums[(j - 1) % n] = nums[(j - 1) % n] + n;
+            }
+
+            for (int i = 0; i < n; i++) {
+                if (nums[i] > 2 * n) {
+                    ans.add(i + 1);
+                }
+            }
+            return ans.get(0);
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
