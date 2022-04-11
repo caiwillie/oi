@@ -45,6 +45,7 @@ class _343_整数拆分 {
                 int curMax = 0;
                 int j = 1;
                 while(j < i) {
+                    // i -j 和 dp[i - j] 需要表，比如 3 > 1 * 2， 5 < 3 * 2
                     curMax = Math.max(curMax, Math.max(j * (i - j), j * dp[i - j]));
                     j++;
                 }
