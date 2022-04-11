@@ -61,7 +61,7 @@ class _539_最小时间差 {
             }
 
             int last = timePoints[length - 1] - timePoints[0];
-            min = Math.min(min, Math.min(last, 24 * 60 - last));
+            min = Math.min(min, 24 * 60 - last);
             return min;
         }
 

@@ -57,6 +57,7 @@ class _516_最长回文子序列 {
                 int j = i;
                 while(j <= length) {
                     if(chars[i] == chars[j]) {
+                        // i + 1 > j - 1，就说明1个和2个的序列，直接进行计算，否则可能会下标越界
                         dp[i][j] = i + 1 > j - 1 ? j - i + 1 : dp[i + 1][j - 1] + 2;
                     } else {
                         dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
