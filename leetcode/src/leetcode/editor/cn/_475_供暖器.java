@@ -59,10 +59,13 @@ class _475_供暖器 {
             int ans = 0;
             for (int i = 0, j = 0; i < houses.length; i++) {
                 int curDistance = Math.abs(houses[i] - heaters[j]);
+
                 while (j < heaters.length - 1 && Math.abs(houses[i] - heaters[j]) >= Math.abs(houses[i] - heaters[j + 1])) {
+                    // 如果没到最后一个，并且当前加热器到当前房屋的距离 比 下个加热器到当前房屋的距离远，就移动到下一个加热器
                     j++;
-                    curDistance = Math.min(curDistance, Math.abs(houses[i] - heaters[j]));
                 }
+
+                curDistance = Math.min(curDistance, Math.abs(houses[i] - heaters[j]));
                 ans = Math.max(ans, curDistance);
             }
             return ans;
