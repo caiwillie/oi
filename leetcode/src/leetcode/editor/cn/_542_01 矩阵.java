@@ -36,86 +36,82 @@ package leetcode.editor.cn;
 // mat[i][j] is either 0 or 1. 
 // mat 中至少有一个 0 
 // 
-// Related Topics 广度优先搜索 数组 动态规划 矩阵 👍 609 👎 0
+// Related Topics 广度优先搜索 数组 动态规划 矩阵 👍 665 👎 0
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
-class _542_01矩阵 {
+class _542_01矩阵{
     public static void main(String[] args) {
         Solution solution = new _542_01矩阵().new Solution();
-        int[][] matrix = {{0, 0, 0}, {0, 1, 0}, {1, 1, 1}};
-        int[][] ans = solution.updateMatrix(matrix);
-        return;
+
     }
+//leetcode submit region begin(Prohibit modification and deletion)
+class Solution {
+    int rl = 0;
+    int cl = 0;
+    int[][] matrix = null;
+    int[][] ans = null;
+    int count = 0;
+    int r = -1, c = -1;
+    LinkedList<int[]> ss = new LinkedList<>();
+    LinkedList<int[]> cs = new LinkedList<>();
 
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int rl = 0;
-        int cl = 0;
-        int[][] matrix = null;
-        int[][] ans = null;
-        int count = 0;
-        int r = -1, c = -1;
-        LinkedList<int[]> ss = new LinkedList<>();
-        LinkedList<int[]> cs = new LinkedList<>();
+    public int[][] updateMatrix(int[][] mat) {
+        rl = mat.length;
+        cl = mat[0].length;
+        matrix = mat;
+        ans = new int[rl][cl];
 
-        public int[][] updateMatrix(int[][] mat) {
-            rl = mat.length;
-            cl = mat[0].length;
-            matrix = mat;
-            ans = new int[rl][cl];
-
-            for (int[] nums : ans) {
-                Arrays.fill(nums, Integer.MAX_VALUE);
-            }
-
-            push();
-            while (!cs.isEmpty()) {
-                int[] ca = cs.peek();
-                if (ss.peek() != ca) {
-                    ss.push(ca);
-                    r = ca[0];
-                    c = ca[1];
-                    ans[r][c] = count;
-                    count++;
-                    push();
-                } else {
-                    ss.pop();
-                    cs.pop();
-                    count--;
-                }
-            }
-
-            return ans;
+        for (int[] nums : ans) {
+            Arrays.fill(nums, Integer.MAX_VALUE);
         }
 
-        void push() {
-            if (r == -1 && c == -1) {
-                for (int i = 0; i < rl; i++) {
-                    for (int j = 0; j < cl; j++) {
-                        if (matrix[i][j] == 0) {
-                            cs.push(new int[]{i, j});
-                        }
-                    }
-                }
+        push();
+        while (!cs.isEmpty()) {
+            int[] ca = cs.peek();
+            if (ss.peek() != ca) {
+                ss.push(ca);
+                r = ca[0];
+                c = ca[1];
+                ans[r][c] = count;
+                count++;
+                push();
             } else {
-                // 左右
-                for (int i = c - 1; i <= c + 1; i++) {
-                    if (i >= 0 && i < cl && matrix[r][i] != 0 && ans[r][i] > count) {
-                        cs.push(new int[] {r, i});
+                ss.pop();
+                cs.pop();
+                count--;
+            }
+        }
+
+        return ans;
+    }
+
+    void push() {
+        if (r == -1 && c == -1) {
+            for (int i = 0; i < rl; i++) {
+                for (int j = 0; j < cl; j++) {
+                    if (matrix[i][j] == 0) {
+                        cs.push(new int[]{i, j});
                     }
                 }
-                // 上下
-                for (int i = r - 1; i <= r + 1; i++) {
-                    if (i >= 0 && i < rl && matrix[i][c] != 0 && ans[i][c] > count) {
-                        cs.push(new int[] {i, c});
-                    }
+            }
+        } else {
+            // 左右
+            for (int i = c - 1; i <= c + 1; i++) {
+                if (i >= 0 && i < cl && matrix[r][i] != 0 && ans[r][i] > count) {
+                    cs.push(new int[] {r, i});
+                }
+            }
+            // 上下
+            for (int i = r - 1; i <= r + 1; i++) {
+                if (i >= 0 && i < rl && matrix[i][c] != 0 && ans[i][c] > count) {
+                    cs.push(new int[] {i, c});
                 }
             }
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
-
+}
+//leetcode submit region end(Prohibit modification and deletion)
 
 }

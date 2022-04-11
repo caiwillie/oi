@@ -70,7 +70,6 @@ class _1143_最长公共子序列 {
             System.arraycopy(text2.toCharArray(), 0, chars2, 1, length2);
 
             int dp[][] = new int[length1 + 1][length2 + 1];
-
             int i = 1;
             while(i <= length1) {
                 int j = 1;
