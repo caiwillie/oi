@@ -57,7 +57,8 @@ class _475_供暖器 {
             Arrays.sort(houses);
             Arrays.sort(heaters);
             int ans = 0;
-            for (int i = 0, j = 0; i < houses.length; i++) {
+            int i = 0, j = 0;
+            while (i < houses.length) {
                 int curDistance = Math.abs(houses[i] - heaters[j]);
 
                 while (j < heaters.length - 1 && Math.abs(houses[i] - heaters[j]) >= Math.abs(houses[i] - heaters[j + 1])) {
@@ -67,6 +68,7 @@ class _475_供暖器 {
 
                 curDistance = Math.min(curDistance, Math.abs(houses[i] - heaters[j]));
                 ans = Math.max(ans, curDistance);
+                i++;
             }
             return ans;
         }
