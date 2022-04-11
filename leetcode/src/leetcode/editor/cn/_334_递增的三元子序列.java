@@ -55,6 +55,13 @@ class _334_递增的三元子序列 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public boolean increasingTriplet(int[] nums) {
+            if(nums.length < 3) return false;
+            int min = Integer.MAX_VALUE, mid = Integer.MAX_VALUE;
+            for(int i : nums){
+                if(i > mid) return true;
+                if(i <= min) min = i; // 替换第一个min，第二个mid放在后面替换
+                else mid = i; // 替换mid
+            }
             return false;
         }
     }
