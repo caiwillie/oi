@@ -64,18 +64,22 @@ class _494_目标和 {
             nums = new int[length + 1];
             System.arraycopy($nums, 0, nums, 1, length);
 
+            // 2001 是用一部分表示负数
             int[][] dp = new int[length + 1][2001];
 
+            // dp[0][1000] 就是0个元素，和为0的情况是1
             dp[0][1000] = 1;
 
 
             for (int i = 1; i <= length; i++) {
                 for (int j = 0; j < 2001; j++) {
+                    // 如果加上这个数能得到j，那么就需要求dp[i - 1][j - nums[i]]
                     int add = j - nums[i] < 0 ? 0 : dp[i - 1][j - nums[i]];
+
+                    // 如果减去这个数能得到j，那么就需要求dp[i - 1][j + nums[i]]
                     int minus = j + nums[i] > 2000 ? 0 : dp[i - 1][j + nums[i]];
-                    if(add != 0 || minus != 0) {
-                        dp[i][j] = add + minus;
-                    }
+
+                    dp[i][j] = add + minus;
                 }
             }
             return dp[length][target + 1000];
