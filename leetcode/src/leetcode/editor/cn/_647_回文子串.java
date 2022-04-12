@@ -57,6 +57,7 @@ class _647_回文子串 {
             // 遍历顺序不一样
             for (int i = length; i >= 1; --i) {
                 for (int j = i; j <= length; ++j) {
+                    // i + 1 > j - 1, 说明个数是1个或者2个
                     dp[i][j] = (chars[i] == chars[j]) && (i + 1 > j - 1 || dp[i + 1][j - 1]);
 
                     if(dp[i][j]) ans++;

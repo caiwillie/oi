@@ -64,6 +64,7 @@ class _673_最长递增子序列的个数 {
 
             int i = 1;
             while (i <= length) {
+                // 0是虚拟的节点
                 int j = 0;
                 int curCount = 0;
                 int curMax = 0;

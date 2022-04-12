@@ -63,10 +63,15 @@ class _621_任务调度器 {
             int[] chars = new int[26];
             int max = 0;
             for (char task : tasks) {
-                max = Math.max(++chars[task - 'A'], max);
+                chars[task - 'A']++;
+                max = Math.max(chars[task - 'A'], max);
             }
-            int result = (max - 1) * (n + 1);
+            // 想象成 max 个桶
+
+            int result = (max - 1) * (n + 1); // 计算了前面 max - 1 个桶，每个桶容量 n + 1
+
             for (int i = 0; i < 26; i++) {
+                // 因为最后一个桶不需要n个间隔，有几个算几个
                 if (chars[i] == max) {
                     result++;
                 }
