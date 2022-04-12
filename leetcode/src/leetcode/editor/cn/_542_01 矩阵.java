@@ -62,11 +62,9 @@ class Solution {
         cl = mat[0].length;
         matrix = mat;
         ans = new int[rl][cl];
-
         for (int[] nums : ans) {
             Arrays.fill(nums, Integer.MAX_VALUE);
         }
-
         push();
         while (!cs.isEmpty()) {
             int[] ca = cs.peek();
@@ -83,7 +81,6 @@ class Solution {
                 count--;
             }
         }
-
         return ans;
     }
 
