@@ -38,6 +38,7 @@ class _718_最长重复子数组 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
+        // 动态规划方法
 
         int length1 = 0;
         int[] nums1 = null;
@@ -73,6 +74,8 @@ class _718_最长重复子数组 {
             }
             return ans;
         }
+
+        // 可以考虑滑动窗口
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
