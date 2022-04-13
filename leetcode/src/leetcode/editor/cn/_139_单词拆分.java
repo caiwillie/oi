@@ -43,7 +43,9 @@ package leetcode.editor.cn;
 // 
 // Related Topics 字典树 记忆化搜索 哈希表 字符串 动态规划 👍 1382 👎 0
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class _139_单词拆分 {
     public static void main(String[] args) {
@@ -53,8 +55,22 @@ class _139_单词拆分 {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        // 动态规划，判断前面i个能不能切分成单词
+
         public boolean wordBreak(String s, List<String> wordDict) {
-            return true;
+
+            Set<String> wordDictSet = new HashSet(wordDict);
+            boolean[] dp = new boolean[s.length() + 1];
+            dp[0] = true;
+            for (int i = 1; i <= s.length(); i++) {
+                for (int j = 0; j < i; j++) {
+                    if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                        dp[i] = true;
+                        break;
+                    }
+                }
+            }
+            return dp[s.length()];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
