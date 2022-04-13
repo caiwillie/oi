@@ -33,19 +33,48 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 动态规划 矩阵 👍 1132 👎 0
 
+import java.util.Arrays;
+
 class _64_最小路径和 {
     public static void main(String[] args) {
         Solution solution = new _64_最小路径和().new Solution();
-
+        int[][] grid = {{1, 3, 1}, {1, 5, 1}, {4, 2, 1}};
+        int ans = solution.minPathSum(grid);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
 
+        int rl, cl;
+        int[][] dp = null;
 
         public int minPathSum(int[][] grid) {
-            return 0;
+            rl = grid.length;
+            cl = grid[0].length;
+
+            dp = new int[rl + 1][cl + 1];
+
+            for (int i = 2; i <= rl; i++) {
+                dp[i][0] = Integer.MAX_VALUE;
+            }
+
+            for (int j = 2; j <= cl; j++) {
+                dp[0][j] = Integer.MAX_VALUE;
+            }
+
+            int i = 1;
+            while (i <= rl) {
+                int j = 1;
+                while (j <= cl) {
+                    dp[i][j] = Math.min(dp[i][j - 1], dp[i - 1][j]) + grid[i - 1][j - 1];
+                    j++;
+                }
+                i++;
+            }
+
+            return dp[rl][cl];
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
