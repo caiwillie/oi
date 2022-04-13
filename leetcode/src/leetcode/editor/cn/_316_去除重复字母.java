@@ -32,6 +32,8 @@ package leetcode.editor.cn;
 //distinct-characters 相同 
 // Related Topics 栈 贪心 字符串 单调栈 👍 702 👎 0
 
+import java.util.LinkedList;
+
 class _316_去除重复字母 {
     public static void main(String[] args) {
         Solution solution = new _316_去除重复字母().new Solution();
@@ -41,7 +43,36 @@ class _316_去除重复字母 {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public String removeDuplicateLetters(String s) {
-            return null;
+            boolean[] vis = new boolean[26];
+            int[] count = new int[26];
+            for (int i = 0; i < s.length(); i++) {
+                count[s.charAt(i) - 'a']++;
+            }
+            LinkedList<Character> stack = new LinkedList<>();
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (!vis[ch - 'a']) {
+                    // 如果没被选中
+                    while (!stack.isEmpty() && stack.peek() > ch) {
+                        if (count[stack.peek() - 'a'] > 0) {
+                            vis[stack.peek() - 'a'] = false;
+                            stack.pop();
+                        } else {
+                            break;
+                        }
+                    }
+                    vis[ch - 'a'] = true;
+                    stack.push(ch);
+                }
+                // 不管用没用，使用计数减1
+                count[ch - 'a'] -= 1;
+            }
+            StringBuilder sb = new StringBuilder();
+            for (int i = stack.size() - 1; i >= 0; i--) {
+                sb.append(stack.get(i));
+            }
+
+            return sb.toString();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
