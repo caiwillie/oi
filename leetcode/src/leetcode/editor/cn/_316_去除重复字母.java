@@ -37,7 +37,8 @@ import java.util.LinkedList;
 class _316_去除重复字母 {
     public static void main(String[] args) {
         Solution solution = new _316_去除重复字母().new Solution();
-
+        String ans = solution.removeDuplicateLetters("bcabc");
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
