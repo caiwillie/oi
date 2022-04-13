@@ -43,7 +43,7 @@ import java.util.LinkedList;
 class _402_移掉K位数字 {
     public static void main(String[] args) {
         Solution solution = new _402_移掉K位数字().new Solution();
-        String ans = solution.removeKdigits("10200", 1);
+        String ans = solution.removeKdigits("10", 1);
         return;
     }
 
@@ -70,14 +70,20 @@ class _402_移掉K位数字 {
                 k--;
             }
 
+            boolean zeroFlag = true;
             //反转并返回字符串
             StringBuilder str = new StringBuilder();
-            while(!stack.isEmpty()){
-                str.append(stack.pop());
+            for (int i = stack.size() - 1; i >= 0; i--) {
+                Character c = stack.get(i);
+                if(zeroFlag && c.equals('0')) {
+                    // 去掉前导0
+                } else {
+                    zeroFlag = false;
+                    str.append(c);
+                }
             }
 
-            // Integer.parseInt可以去掉前导0
-            return String.valueOf(Integer.parseInt(str.reverse().toString()));
+            return str.length() > 0 ? str.toString() : "0";
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
