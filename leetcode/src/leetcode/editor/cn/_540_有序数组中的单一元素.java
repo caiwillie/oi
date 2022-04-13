@@ -34,17 +34,50 @@ package leetcode.editor.cn;
 // 
 // Related Topics 数组 二分查找 👍 497 👎 0
 
-class _540_有序数组中的单一元素{
+class _540_有序数组中的单一元素 {
     public static void main(String[] args) {
         Solution solution = new _540_有序数组中的单一元素().new Solution();
-
+        int[] nums = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+        int ans = solution.singleNonDuplicate(nums);
+        return;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int singleNonDuplicate(int[] nums) {
 
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int singleNonDuplicate(int[] nums) {
+            int l = 0;
+            int r = nums.length - 1;
+
+            while (l < r) {
+                int mid = (l + r) / 2;
+                int num = nums[mid];
+
+                if(mid % 2 == 0) {
+                    // 中点两侧是偶数
+                    if (num == nums[mid - 1]) {
+                        r = mid;
+                    } else if (num == nums[mid + 1]) {
+                        l = mid;
+                    } else {
+                        l = mid;
+                        break;
+                    }
+                } else {
+                    // 中点两侧是奇数
+                    if (num == nums[mid - 1]) {
+                        l = mid + 1;
+                    } else if (num == nums[mid + 1]) {
+                        r = mid - 1;
+                    } else {
+                        l = mid;
+                        break;
+                    }
+                }
+            }
+
+            return nums[l];
+        }
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
+    //leetcode submit region end(Prohibit modification and deletion)
 
 }
