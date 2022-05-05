@@ -46,16 +46,43 @@ package leetcode.editor.cn;
 // 
 // Related Topics 栈 贪心 数组 双指针 排序 单调栈 👍 844 👎 0
 
+import java.util.LinkedList;
+
 class _581_最短无序连续子数组 {
     public static void main(String[] args) {
         Solution solution = new _581_最短无序连续子数组().new Solution();
-
+        int[] nums = {2, 6, 4, 8, 10, 9, 15};
+        int ans = solution.findUnsortedSubarray(nums);
+        return;
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+
+        LinkedList<Integer> stack = new LinkedList<>();
+        LinkedList<Integer> tempStack = new LinkedList<>();
+
         public int findUnsortedSubarray(int[] nums) {
-            return 0;
+
+            // 单调栈从前往后遍历一遍可得到左边界
+            // 单调栈从后往前遍历一遍可得到右边界
+            LinkedList<Integer> stack = new LinkedList<>();
+            int left = nums.length;
+            for (int i = 0; i < nums.length; i++) {
+                while (!stack.isEmpty() && nums[stack.peek()] > nums[i]) {
+                    left = Math.min(left, stack.pop());
+                }
+                stack.push(i);
+            }
+            stack.clear();
+            int right = -1;
+            for (int i = nums.length - 1; i >= 0; i--) {
+                while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                    right = Math.max(right, stack.pop());
+                }
+                stack.push(i);
+            }
+            return right - left > 0 ? right - left + 1 : 0;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
